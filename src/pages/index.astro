@@ -1,0 +1,31 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Nav from '@/components/Nav.astro';
+import Hero from '@/components/Hero.astro';
+import BrandMarquee from '@/components/BrandMarquee.astro';
+import Leistungen from '@/components/Leistungen.astro';
+import VorherNachher from '@/components/VorherNachher.astro';
+import Preise from '@/components/Preise.astro';
+import AngebotForm from '@/components/AngebotForm.astro';
+import Einsatzgebiet from '@/components/Einsatzgebiet.astro';
+import UeberUns from '@/components/UeberUns.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<Layout
+  title="Klimaanlagen-Montage in Wien & Umgebung – Ecocool Klíma"
+  description="Klimaanlagen-Montage, Service und Wartung in Wien, Niederösterreich, Oberösterreich und dem Burgenland. Montage ab 1.100 € zzgl. USt. Angebot per Foto oder Video anfragen."
+>
+  <Nav />
+  <main class="pb-16 md:pb-0">
+    <Hero />
+    <BrandMarquee />
+    <Leistungen />
+    <VorherNachher />
+    <Preise />
+    <AngebotForm />
+    <Einsatzgebiet />
+    <UeberUns />
+  </main>
+  <Footer />
+</Layout>

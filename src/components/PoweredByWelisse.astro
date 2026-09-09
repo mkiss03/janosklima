@@ -1,0 +1,82 @@
+---
+/**
+ * "Powered by Welisse" jelvény.
+ * Ld. welisse-badge-kit/README.md
+ */
+interface Props {
+  theme?: 'dark' | 'light';
+  utm?: string;
+  markSrc?: string;
+  markSrc2x?: string;
+}
+
+const {
+  theme = 'dark',
+  utm = '',
+  markSrc = '/brand/welisse-mark.png',
+  markSrc2x = '/brand/welisse-mark@2x.png',
+} = Astro.props;
+
+const href =
+  'https://welisse.hu/' +
+  (utm ? `?utm_source=${encodeURIComponent(utm)}&utm_medium=footer&utm_campaign=powered_by` : '');
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener"
+  class:list={['pbw', theme === 'light' && 'pbw--light']}
+  aria-label="Készítette a Welisse — welisse.hu"
+>
+  <span>Powered by</span>
+  <img
+    src={markSrc}
+    srcset={markSrc2x ? `${markSrc} 1x, ${markSrc2x} 2x` : undefined}
+    alt=""
+    width="30"
+    height="16"
+    loading="lazy"
+    decoding="async"
+  />
+  <strong>Welisse</strong>
+</a>
+
+<style>
+  .pbw {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.45);
+    opacity: 0.85;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+  .pbw img {
+    display: block;
+    height: 16px;
+    width: auto;
+  }
+  .pbw strong {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .pbw--light {
+    color: rgba(15, 23, 42, 0.5);
+  }
+  .pbw--light strong {
+    color: #0f172a;
+  }
+  .pbw:hover {
+    opacity: 1;
+    color: #00e5ff;
+  }
+  .pbw:focus-visible {
+    outline: 2px solid #00e5ff;
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+</style>

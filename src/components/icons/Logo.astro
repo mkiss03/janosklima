@@ -1,0 +1,18 @@
+---
+import LogoMark from './LogoMark.astro';
+
+interface Props {
+  class?: string;
+  dark?: boolean;
+}
+const { class: className = '', dark = false } = Astro.props;
+---
+
+<span class={`inline-flex items-center gap-2.5 ${className}`}>
+  <LogoMark class="h-8 w-8 shrink-0" />
+  <span
+    class={`font-display text-lg leading-none [font-variation-settings:'wdth'_112] ${dark ? 'text-paper' : 'text-ink'}`}
+  >
+    Ecocool&nbsp;Klíma
+  </span>
+</span>

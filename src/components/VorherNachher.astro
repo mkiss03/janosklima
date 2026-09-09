@@ -1,0 +1,232 @@
+---
+import { Image } from 'astro:assets';
+import wohnzimmerVorher from '@/assets/images/vorher-nachher/wohnzimmer-vorher.jpg';
+import wohnzimmerNachher from '@/assets/images/vorher-nachher/wohnzimmer-nachher.jpg';
+import fassadeVorher from '@/assets/images/vorher-nachher/fassade-vorher.jpg';
+import fassadeNachher from '@/assets/images/vorher-nachher/fassade-nachher.jpg';
+
+const projects = [
+  {
+    id: 'wohnzimmer',
+    title: 'Wohnzimmer – Innengerät',
+    vorher: wohnzimmerVorher,
+    nachher: wohnzimmerNachher,
+    vorherAlt: 'Wandhalterung für das Innengerät an der Wohnzimmerwand, vor der Montage',
+    nachherAlt: 'Daikin Innengerät montiert, Leitungsführung im Kanal an der Decke',
+    vorherCaption: 'Wandhalterung, vor der Montage',
+    nachherCaption: 'Daikin Innengerät, Leitungsführung im Kanal an der Decke – Aufnahme während der Montage',
+    todo: null,
+  },
+  {
+    id: 'fassade',
+    title: 'Fassade – Außengerät',
+    vorher: fassadeVorher,
+    nachher: fassadeNachher,
+    vorherAlt: 'Vorbereitete Wanddurchführung an der Fassade, vor der Montage',
+    nachherAlt: 'Daikin Außengerät auf Wandkonsole montiert',
+    vorherCaption: 'Vorbereitete Wanddurchführung, vor der Montage',
+    nachherCaption: 'Daikin Außengerät auf Wandkonsole montiert',
+    todo: 'TODO: neu fotografieren, gleiche Position',
+  },
+];
+---
+
+<section id="referenzen" class="bg-[#0B0B0B] py-20 md:py-28">
+  <div class="mx-auto max-w-content px-5 sm:px-8">
+    <h2 class="mb-14 max-w-measure text-3xl text-paper md:text-4xl [font-variation-settings:'wdth'_118]">
+      Vorher &amp; nachher
+    </h2>
+
+    <div class="flex flex-col gap-24 md:gap-32">
+      {
+        projects.map((project) => (
+          <div class="vn-project" data-vn-project>
+            <p class="mb-4 font-body text-sm text-paper/60">{project.title}</p>
+
+            <div
+              class="vn-compare relative aspect-[16/10] w-full select-none overflow-hidden rounded-frame bg-neutral-900"
+              data-vn-compare
+              role="slider"
+              tabindex="0"
+              aria-label={`Bildvergleich ${project.title}: vorher und nachher`}
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              aria-valuetext="Vorher"
+            >
+              <Image
+                src={project.vorher}
+                alt={project.vorherAlt}
+                widths={[480, 800, 1200, 1600]}
+                sizes="(min-width: 768px) 700px, 100vw"
+                format="webp"
+                loading="lazy"
+                class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+              />
+
+              <div
+                class="pointer-events-none absolute inset-0 overflow-hidden"
+                data-vn-after-wrap
+                style="clip-path: inset(0 100% 0 0);"
+              >
+                <Image
+                  src={project.nachher}
+                  alt={project.nachherAlt}
+                  widths={[480, 800, 1200, 1600]}
+                  sizes="(min-width: 768px) 700px, 100vw"
+                  format="webp"
+                  loading="lazy"
+                  class="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+
+              <div
+                class="pointer-events-none absolute inset-y-0 w-[2px] bg-ice-400"
+                data-vn-divider
+                style="left: 0%;"
+              >
+              </div>
+
+              <div
+                class="pointer-events-none absolute top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-paper text-ice-900 shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
+                data-vn-handle
+                style="left: 0%;"
+                aria-hidden="true"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M5 3L1 8l4 5M11 3l4 5-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+
+              <span class="pointer-events-none absolute left-3 top-3 rounded-btn bg-ice-900/70 px-2.5 py-1 font-body text-xs text-paper">
+                Vorher
+              </span>
+              <span
+                class="pointer-events-none absolute right-3 top-3 rounded-btn bg-sun-600/80 px-2.5 py-1 font-body text-xs text-paper transition-opacity duration-220 ease-studio"
+                data-vn-after-label
+                style="opacity: 0;"
+              >
+                Nachher
+              </span>
+            </div>
+
+            <div class="mt-4 flex flex-wrap items-baseline justify-between gap-2">
+              <p
+                class="max-w-measure font-body text-sm text-paper/70"
+                data-vn-caption
+                data-vorher-caption={project.vorherCaption}
+                data-nachher-caption={project.nachherCaption}
+              >
+                {project.vorherCaption}
+              </p>
+              {project.todo && (
+                <p class="font-body text-xs font-medium text-sun-500">[{project.todo}]</p>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const scrollBound: { project: HTMLElement; compare: HTMLElement; apply: (p: number) => void; isDragging: () => boolean }[] = [];
+
+  const projectEls = document.querySelectorAll<HTMLElement>('[data-vn-project]');
+
+  projectEls.forEach((project) => {
+    const compare = project.querySelector<HTMLElement>('[data-vn-compare]');
+    const afterWrap = project.querySelector<HTMLElement>('[data-vn-after-wrap]');
+    const afterLabel = project.querySelector<HTMLElement>('[data-vn-after-label]');
+    const divider = project.querySelector<HTMLElement>('[data-vn-divider]');
+    const handle = project.querySelector<HTMLElement>('[data-vn-handle]');
+    const captionEl = project.querySelector<HTMLElement>('[data-vn-caption]');
+    const vorherCaption = captionEl?.dataset.vorherCaption ?? '';
+    const nachherCaption = captionEl?.dataset.nachherCaption ?? '';
+    if (!compare || !afterWrap || !divider || !handle) return;
+
+    let dragging = false;
+    let current = 0;
+
+    const applyReveal = (percent: number) => {
+      current = Math.min(100, Math.max(0, percent));
+      afterWrap.style.clipPath = `inset(0 ${100 - current}% 0 0)`;
+      divider.style.left = `${current}%`;
+      handle.style.left = `${current}%`;
+      compare.setAttribute('aria-valuenow', String(Math.round(current)));
+      const revealed = current > 55;
+      compare.setAttribute('aria-valuetext', revealed ? 'Nachher' : 'Vorher');
+      if (afterLabel) afterLabel.style.opacity = current > 15 ? '1' : '0';
+      if (captionEl) captionEl.textContent = revealed ? nachherCaption : vorherCaption;
+    };
+
+    const percentFromClientX = (clientX: number) => {
+      const rect = compare.getBoundingClientRect();
+      return ((clientX - rect.left) / rect.width) * 100;
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragging) return;
+      applyReveal(percentFromClientX(e.clientX));
+    };
+
+    const endDrag = () => {
+      dragging = false;
+    };
+
+    compare.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      compare.setPointerCapture(e.pointerId);
+      applyReveal(percentFromClientX(e.clientX));
+    });
+    compare.addEventListener('pointermove', onPointerMove);
+    compare.addEventListener('pointerup', endDrag);
+    compare.addEventListener('pointercancel', endDrag);
+
+    compare.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        applyReveal(current + 5);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        applyReveal(current - 5);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        applyReveal(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        applyReveal(100);
+      }
+    });
+
+    if (reduceMotion) {
+      applyReveal(0);
+      return;
+    }
+
+    scrollBound.push({ project, compare, apply: applyReveal, isDragging: () => dragging });
+  });
+
+  if (!reduceMotion && scrollBound.length > 0) {
+    Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([{ gsap }, { ScrollTrigger }]) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      scrollBound.forEach(({ project, compare, apply, isDragging }) => {
+        ScrollTrigger.create({
+          trigger: project,
+          start: 'top top+=80',
+          end: '+=100%',
+          pin: compare,
+          pinSpacing: true,
+          scrub: 0.4,
+          onUpdate: (self) => {
+            if (!isDragging()) apply(self.progress * 100);
+          },
+        });
+      });
+    });
+  }
+</script>

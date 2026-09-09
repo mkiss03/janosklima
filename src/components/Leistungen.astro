@@ -1,0 +1,253 @@
+---
+const steps = [
+  { n: '1', label: 'Innengerät' },
+  { n: '2', label: 'Leitungen' },
+  { n: '3', label: 'Außengerät' },
+  { n: '4', label: 'Inbetriebnahme' },
+];
+---
+
+<section id="leistungen" class="bg-paper py-20 md:py-28">
+  <div class="mx-auto max-w-content px-5 sm:px-8">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-16">
+      <div class="col-span-12 md:sticky md:top-28 md:col-span-5 md:h-fit md:self-start">
+        <svg
+          data-diagram
+          viewBox="0 0 420 400"
+          class="mx-auto w-full max-w-sm md:mx-0"
+          role="img"
+          aria-label="Schema einer Split-Klimaanlage: Innengerät, Leitungen, Außengerät und elektrischer Anschluss"
+        >
+          <line
+            x1="258"
+            y1="14"
+            x2="258"
+            y2="392"
+            stroke="var(--neutral-300, #ADB0B3)"
+            stroke-width="1.2"
+            stroke-dasharray="2 5"
+            vector-effect="non-scaling-stroke"
+          ></line>
+
+          <g data-step="1" fill="none" stroke="var(--ink)" stroke-width="1.5">
+            <rect data-draw x="40" y="46" width="192" height="56" rx="4" vector-effect="non-scaling-stroke"></rect>
+            <line data-draw x1="56" y1="62" x2="216" y2="62" vector-effect="non-scaling-stroke"></line>
+            <line data-draw x1="56" y1="72" x2="216" y2="72" vector-effect="non-scaling-stroke"></line>
+            <rect
+              data-draw
+              data-diagram-part="filter"
+              x="56"
+              y="80"
+              width="160"
+              height="14"
+              vector-effect="non-scaling-stroke"
+            ></rect>
+          </g>
+
+          <g data-step="2" fill="none" stroke="var(--ink)" stroke-width="1.5">
+            <path data-draw d="M232 74 C 250 74, 250 128, 260 140 S 288 200, 298 258" vector-effect="non-scaling-stroke"
+            ></path>
+            <circle data-draw cx="259" cy="140" r="5" vector-effect="non-scaling-stroke"></circle>
+          </g>
+
+          <g data-step="3" fill="none" stroke="var(--ink)" stroke-width="1.5">
+            <rect data-draw x="284" y="252" width="118" height="92" rx="4" vector-effect="non-scaling-stroke"></rect>
+            <circle
+              data-draw
+              data-diagram-part="fan"
+              cx="343"
+              cy="298"
+              r="30"
+              vector-effect="non-scaling-stroke"
+            ></circle>
+            <line data-draw x1="300" y1="344" x2="300" y2="362" vector-effect="non-scaling-stroke"></line>
+            <line data-draw x1="386" y1="344" x2="386" y2="362" vector-effect="non-scaling-stroke"></line>
+            <line data-draw x1="284" y1="362" x2="402" y2="362" vector-effect="non-scaling-stroke"></line>
+          </g>
+
+          <g data-step="4" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="3 3">
+            <path data-draw d="M232 58 L 246 38 L 256 52 L 270 30" vector-effect="non-scaling-stroke"></path>
+            <path data-draw d="M270 30 C 282 62, 300 84, 318 104 S 334 210, 340 252" vector-effect="non-scaling-stroke"
+            ></path>
+          </g>
+
+          <g data-diagram-part="fault" opacity="0">
+            <path d="M343 280 L 351 298 L 335 298 Z" fill="var(--sun-600)"></path>
+            <line x1="343" y1="286" x2="343" y2="293" stroke="var(--paper)" stroke-width="2"></line>
+            <circle cx="343" cy="296" r="1" fill="var(--paper)"></circle>
+          </g>
+
+          <g data-diagram-part="gauge-group" fill="none" stroke="var(--ink)" stroke-width="1.5">
+            <path data-draw d="M372 211 C 370 225, 366 240, 365 252" vector-effect="non-scaling-stroke"></path>
+            <circle data-draw cx="372" cy="185" r="26" vector-effect="non-scaling-stroke"></circle>
+            <g stroke-width="1.2">
+              <line data-draw x1="390.4" y1="166.6" x2="386.1" y2="170.9" vector-effect="non-scaling-stroke"></line>
+              <line data-draw x1="382" y1="161" x2="379.7" y2="166.5" vector-effect="non-scaling-stroke"></line>
+              <line data-draw x1="372" y1="159" x2="372" y2="165" vector-effect="non-scaling-stroke"></line>
+              <line data-draw x1="362" y1="161" x2="364.3" y2="166.5" vector-effect="non-scaling-stroke"></line>
+              <line data-draw x1="353.6" y1="166.6" x2="357.9" y2="170.9" vector-effect="non-scaling-stroke"></line>
+            </g>
+            <line
+              data-draw
+              x1="372"
+              y1="185"
+              x2="389"
+              y2="175"
+              stroke="var(--sun-600)"
+              stroke-width="2"
+              vector-effect="non-scaling-stroke"
+            ></line>
+            <circle cx="372" cy="185" r="2.5" fill="var(--ink)" stroke="none"></circle>
+          </g>
+
+          <g data-diagram-part="wartung-extra" stroke="var(--ice-600)" stroke-width="1.8" stroke-linecap="round">
+            <path
+              data-draw
+              d="M50 83 L 222 91"
+              fill="none"
+              stroke-width="2.5"
+              vector-effect="non-scaling-stroke"
+            ></path>
+            <line data-draw x1="100" y1="102" x2="80" y2="132" vector-effect="non-scaling-stroke"></line>
+            <line data-draw x1="126" y1="102" x2="126" y2="136" vector-effect="non-scaling-stroke"></line>
+            <line data-draw x1="152" y1="102" x2="172" y2="132" vector-effect="non-scaling-stroke"></line>
+          </g>
+        </svg>
+      </div>
+
+      <div class="col-span-12 flex flex-col gap-24 md:col-span-7 md:gap-40">
+        <article data-service-block="montage" class="max-w-measure md:flex md:min-h-[75vh] md:flex-col md:justify-center">
+          <h2 class="mb-4 text-3xl text-ink md:text-4xl [font-variation-settings:'wdth'_118]">
+            Klimaanlagen-Montage
+          </h2>
+          <p class="mb-8 text-lg text-neutral-700">
+            Fachgerechte Komplettmontage von Split-Klimaanlagen – Innen- und
+            Außengerät, Kältemittelleitungen, elektrischer Anschluss und
+            Inbetriebnahme, nach Herstellervorgaben.
+          </p>
+          <ol class="space-y-3">
+            {
+              steps.map((step) => (
+                <li class="flex items-baseline gap-3 font-body text-base text-ink">
+                  <span class="font-display text-sm text-ice-600 [font-variation-settings:'wdth'_112]">
+                    {step.n}
+                  </span>
+                  <span>{step.label}</span>
+                </li>
+              ))
+            }
+          </ol>
+        </article>
+
+        <article data-service-block="reparatur" class="max-w-measure md:flex md:min-h-[75vh] md:flex-col md:justify-center">
+          <h2 class="mb-4 text-3xl text-ink md:text-4xl [font-variation-settings:'wdth'_118]">
+            Reparatur &amp; Service
+          </h2>
+          <p class="text-lg text-neutral-700">
+            Fehlersuche und Reparatur bei Funktionsstörungen, Fehlercodes,
+            Leistungsabfall oder auffälligem Betrieb.
+          </p>
+        </article>
+
+        <article data-service-block="wartung" class="max-w-measure md:flex md:min-h-[75vh] md:flex-col md:justify-center">
+          <h2 class="mb-4 text-3xl text-ink md:text-4xl [font-variation-settings:'wdth'_118]">
+            Wartung
+          </h2>
+          <p class="text-lg text-neutral-700">
+            Reinigung und Prüfung der wichtigen Bauteile, Funktionskontrolle –
+            für hygienischen, effizienten und zuverlässigen Betrieb.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const svg = document.querySelector<SVGSVGElement>('[data-diagram]');
+  if (svg) {
+    const drawEls = Array.from(
+      svg.querySelectorAll<SVGGeometryElement>('[data-draw]')
+    );
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const prime = () => {
+      drawEls.forEach((el) => {
+        const len = el.getTotalLength();
+        el.style.strokeDasharray = String(len);
+        el.style.strokeDashoffset = reduce ? '0' : String(len);
+      });
+    };
+    prime();
+
+    const fault = svg.querySelector<SVGElement>('[data-diagram-part="fault"]');
+    const filter = svg.querySelector<SVGElement>('[data-diagram-part="filter"]');
+    const fan = svg.querySelector<SVGElement>('[data-diagram-part="fan"]');
+    const gaugeDraws = svg.querySelectorAll('[data-diagram-part="gauge-group"] [data-draw]');
+    const wartungExtraDraws = svg.querySelectorAll('[data-diagram-part="wartung-extra"] [data-draw]');
+
+    if (reduce) {
+      if (fault) fault.setAttribute('opacity', '0.55');
+    } else {
+      const stepGroups = [1, 2, 3, 4].map((n) => svg.querySelectorAll(`[data-step="${n}"] [data-draw]`));
+
+      import('gsap').then(async ({ gsap }) => {
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        gsap.registerPlugin(ScrollTrigger);
+
+        const montageBlock = document.querySelector('[data-service-block="montage"]');
+        const reparaturBlock = document.querySelector('[data-service-block="reparatur"]');
+        const wartungBlock = document.querySelector('[data-service-block="wartung"]');
+
+        if (montageBlock) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: montageBlock,
+              start: 'top 75%',
+              end: 'bottom 40%',
+              scrub: 0.4,
+            },
+          });
+          stepGroups.forEach((group, i) => {
+            tl.to(
+              group,
+              { strokeDashoffset: 0, ease: 'none', duration: 1 },
+              i === 0 ? 0 : '>'
+            );
+          });
+        }
+
+        if (reparaturBlock) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: reparaturBlock,
+              start: 'top 70%',
+              end: 'bottom 40%',
+              scrub: 0.4,
+            },
+          });
+          // hose + dial + ticks draw in first, then the needle swings into the
+          // warning zone, then the fault mark lights up on the unit itself.
+          tl.to(gaugeDraws, { strokeDashoffset: 0, ease: 'none', duration: 1 }, 0)
+            .to(fan ?? [], { attr: { stroke: '#E4552B' }, ease: 'none', duration: 0.4 }, 0.5)
+            .to(fault ?? [], { opacity: 1, ease: 'none', duration: 0.5 }, 0.6);
+        }
+
+        if (wartungBlock) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: wartungBlock,
+              start: 'top 70%',
+              end: 'bottom 40%',
+              scrub: 0.4,
+            },
+          });
+          // the wipe crosses the filter first, then clean airflow draws out
+          // from the unit, then the filter itself is highlighted as serviced.
+          tl.to(filter ?? [], { attr: { stroke: '#1E5AA8', 'stroke-width': 2.5 }, ease: 'none', duration: 0.3 }, 0)
+            .to(wartungExtraDraws, { strokeDashoffset: 0, ease: 'none', duration: 1 }, 0.1);
+        }
+      });
+    }
+  }
+</script>

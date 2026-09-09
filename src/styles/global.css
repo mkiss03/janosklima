@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --sun-500: #f28a1e;
+    --sun-600: #e4552b;
+    --ice-400: #4fb8e6;
+    --ice-600: #1e5aa8;
+    --ice-900: #10284f;
+    --ink: #171a1f;
+    --paper: #f4f6f8;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: theme('fontFamily.body');
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: theme('fontFamily.display');
+    font-variation-settings: 'wdth' 118;
+    letter-spacing: -0.01em;
+  }
+
+  a,
+  button,
+  input,
+  [role='slider'],
+  [role='button'] {
+    outline-offset: 3px;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [role='slider']:focus-visible,
+  [role='button']:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--ice-400);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,71 @@
+---
+import LegalLayout from '@/layouts/LegalLayout.astro';
+import { COMPANY } from '@/lib/constants';
+---
+
+<LegalLayout
+  title="Datenschutzerklärung – Ecocool Klíma"
+  description="Datenschutzerklärung der Ecocool Klíma Kft."
+>
+  <h1 class="mb-8 text-3xl text-ink [font-variation-settings:'wdth'_118]">
+    Datenschutzerklärung
+  </h1>
+
+  <p class="mb-6 font-body text-base text-sun-600">
+    [TODO: von Rechtsberatung prüfen lassen — dieser Text ist ein Entwurf und
+    ersetzt keine rechtliche Prüfung nach DSGVO.]
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Verantwortlicher</h2>
+  <p class="font-body text-base text-neutral-700">
+    {COMPANY.name}, {COMPANY.addressStreet}, {COMPANY.addressZip} {COMPANY.addressCity}, Ungarn.<br />
+    Telefon: {COMPANY.phoneAT} · E-Mail:{' '}
+    {COMPANY.email || <span class="text-sun-600">[TODO: E-Mail-Adresse]</span>}
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Welche Daten wir verarbeiten
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    Wenn Sie über das Angebotsformular eine Anfrage stellen, verarbeiten wir
+    die von Ihnen angegebenen Daten: Name, Telefonnummer, E-Mail-Adresse,
+    Postleitzahl und Ort, Bundesland, Art der Anfrage, Ihre Beschreibung
+    sowie die von Ihnen hochgeladenen Fotos oder Videos.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Zweck und Rechtsgrundlage
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    Die Verarbeitung erfolgt zur Bearbeitung Ihrer Angebotsanfrage und zur
+    Kontaktaufnahme (Art. 6 Abs. 1 lit. b DSGVO – vorvertragliche Maßnahme).
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Speicherdauer
+  </h2>
+  <p class="font-body text-base text-sun-600">[TODO: konkrete Speicherdauer festlegen]</p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Empfänger / Auftragsverarbeiter
+  </h2>
+  <p class="font-body text-base text-sun-600">
+    [TODO: Hosting-Anbieter, Formular-/E-Mail-Dienst und alle weiteren
+    eingesetzten Dienstleister eintragen, inkl. Auftragsverarbeitungsverträge]
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Cookies</h2>
+  <p class="font-body text-base text-neutral-700">
+    Diese Website verwendet keine Analyse- oder Marketing-Cookies.
+    <span class="text-sun-600">[TODO: bei Änderung — z. B. Analytics — Cookie-Banner ergänzen]</span>
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Ihre Rechte</h2>
+  <p class="font-body text-base text-neutral-700">
+    Sie haben das Recht auf Auskunft, Berichtigung, Löschung und
+    Einschränkung der Verarbeitung Ihrer Daten sowie das Recht auf
+    Datenübertragbarkeit und Widerspruch. Zudem können Sie sich bei einer
+    Datenschutz-Aufsichtsbehörde beschweren.
+    <span class="text-sun-600">[TODO: zuständige Aufsichtsbehörde nennen]</span>
+  </p>
+</LegalLayout>

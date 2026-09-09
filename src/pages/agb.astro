@@ -1,0 +1,60 @@
+---
+import LegalLayout from '@/layouts/LegalLayout.astro';
+import { COMPANY, PRICING } from '@/lib/constants';
+---
+
+<LegalLayout
+  title="AGB – Ecocool Klíma"
+  description="Allgemeine Geschäftsbedingungen der Ecocool Klíma Kft."
+>
+  <h1 class="mb-8 text-3xl text-ink [font-variation-settings:'wdth'_118]">
+    Allgemeine Geschäftsbedingungen
+  </h1>
+
+  <p class="mb-6 font-body text-base text-sun-600">
+    [TODO: von Rechtsberatung prüfen lassen — dieser Text ist ein Entwurf und
+    keine rechtsgültige AGB-Fassung.]
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Geltungsbereich</h2>
+  <p class="font-body text-base text-neutral-700">
+    Diese Bedingungen gelten für Verträge über Montage, Reparatur und
+    Wartung von Klimaanlagen zwischen {COMPANY.name} und ihren Kundinnen und
+    Kunden in Österreich.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Angebot und Vertragsabschluss
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    Die Montage beginnt bei {PRICING.startingPrice} {PRICING.vatNote}
+    (bis {PRICING.maxPipeLength} Leitungslänge, bis {PRICING.maxRoomHeight}{' '}
+    Raumhöhe). Das endgültige Angebot erstellen wir nach einer Besichtigung
+    vor Ort oder anhand von übermittelten Fotos bzw. einem Video.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Zahlungsbedingungen</h2>
+  <p class="font-body text-base text-sun-600">[TODO: Zahlungsbedingungen festlegen]</p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Gewährleistung
+  </h2>
+  <p class="font-body text-base text-sun-600">[TODO: Gewährleistungsregelung festlegen]</p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Haftung</h2>
+  <p class="font-body text-base text-sun-600">[TODO: Haftungsregelung festlegen]</p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Rücktrittsrecht
+  </h2>
+  <p class="font-body text-base text-sun-600">
+    [TODO: von Rechtsberatung prüfen lassen — Verbraucherrücktrittsrecht bei
+    außerhalb von Geschäftsräumen geschlossenen Verträgen bzw. Ausnahmen für
+    dringende Reparaturen]
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Anwendbares Recht und Gerichtsstand
+  </h2>
+  <p class="font-body text-base text-sun-600">[TODO: anwendbares Recht und Gerichtsstand festlegen]</p>
+</LegalLayout>

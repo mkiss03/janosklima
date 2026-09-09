@@ -1,0 +1,141 @@
+---
+import { AUSTRIA_REGIONS, AUSTRIA_VIEWBOX } from '@/lib/austria-map';
+import { REGIONS_PRIMARY } from '@/lib/constants';
+---
+
+<section id="einsatzgebiet" class="bg-ice-900 py-20 md:py-28">
+  <div class="mx-auto max-w-content px-5 sm:px-8">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-12">
+      <div class="col-span-12 md:col-span-4">
+        <h2 class="mb-6 text-3xl text-paper md:text-4xl [font-variation-settings:'wdth'_118]">
+          Wo wir montieren
+        </h2>
+        <ul class="mb-6 space-y-2 font-body text-lg text-paper/90">
+          {REGIONS_PRIMARY.map((r) => <li>{r}</li>)}
+        </ul>
+        <p class="font-body text-base text-paper/60">Ganz Österreich nach Vereinbarung.</p>
+
+        <p
+          data-region-status
+          class="mt-10 min-h-[1.6em] font-body text-base text-paper"
+          aria-live="polite"
+        >
+          &nbsp;
+        </p>
+      </div>
+
+      <div class="col-span-12 md:col-span-8">
+        <svg
+          data-austria-map
+          viewBox={AUSTRIA_VIEWBOX}
+          class="mx-auto w-full max-w-2xl"
+          role="img"
+          aria-label="Karte von Österreich mit den Bundesländern, klickbar zur Auswahl im Anfrageformular"
+        >
+          {
+            AUSTRIA_REGIONS.map((region) => (
+              <path
+                d={region.d}
+                data-region={region.id}
+                data-label={region.label}
+                data-primary={region.primary ? 'true' : 'false'}
+                tabindex="0"
+                role="button"
+                aria-label={`${region.label}${region.primary ? ' – Hauptgebiet' : ' – nach Absprache'}`}
+                class={`map-region cursor-pointer transition-colors duration-220 ease-studio ${
+                  region.primary ? 'fill-ice-400' : 'fill-paper'
+                }`}
+                stroke="#10284F"
+                stroke-width="2"
+              />
+            ))
+          }
+        </svg>
+        <p class="mt-3 text-center font-body text-xs text-paper/40">
+          Kartengrundlage: Wikimedia Commons, „Austria States blank map", CC BY-SA 3.0
+        </p>
+
+        <ul class="mt-8 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3 md:hidden">
+          {
+            AUSTRIA_REGIONS.map((region) => (
+              <li>
+                <button
+                  type="button"
+                  data-region-list-item={region.id}
+                  class="w-full rounded-btn border border-paper/20 px-3 py-2 text-left font-body text-sm text-paper/80"
+                >
+                  {region.label}
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .map-region {
+    fill-opacity: 0.14;
+  }
+  .map-region:hover,
+  .map-region:focus-visible {
+    fill-opacity: 0.4;
+  }
+  .map-region[data-primary='true'] {
+    fill-opacity: 0.85;
+  }
+  .map-region[data-primary='true']:hover,
+  .map-region[data-primary='true']:focus-visible {
+    fill-opacity: 1;
+  }
+</style>
+
+<script>
+  const statusEl = document.querySelector<HTMLElement>('[data-region-status]');
+  const regionEls = document.querySelectorAll<SVGPathElement>('[data-region]');
+  const listButtons = document.querySelectorAll<HTMLButtonElement>('[data-region-list-item]');
+
+  const setStatus = (label: string, primary: boolean) => {
+    if (statusEl) {
+      statusEl.textContent = `${label} – ${primary ? 'Hauptgebiet' : 'nach Absprache'}`;
+    }
+  };
+
+  const clearStatus = () => {
+    if (statusEl) statusEl.textContent = ' ';
+  };
+
+  const selectRegion = (label: string) => {
+    window.dispatchEvent(new CustomEvent('ecocool:select-region', { detail: { region: label } }));
+    document.getElementById('angebot')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const bundeslandField = document.querySelector<HTMLElement>('[data-bundesland-select]');
+    window.setTimeout(() => bundeslandField?.focus(), 500);
+  };
+
+  regionEls.forEach((el) => {
+    const label = el.dataset.label ?? '';
+    const primary = el.dataset.primary === 'true';
+
+    el.addEventListener('mouseenter', () => setStatus(label, primary));
+    el.addEventListener('focus', () => setStatus(label, primary));
+    el.addEventListener('mouseleave', clearStatus);
+    el.addEventListener('blur', clearStatus);
+    el.addEventListener('click', () => selectRegion(label));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectRegion(label);
+      }
+    });
+  });
+
+  listButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.regionListItem ?? '';
+      const source = document.querySelector<SVGPathElement>(`[data-region="${id}"]`);
+      selectRegion(source?.dataset.label ?? btn.textContent?.trim() ?? '');
+    });
+  });
+</script>

@@ -1,0 +1,57 @@
+---
+import { BRANDS } from '@/lib/constants';
+
+const tripled = [...BRANDS, ...BRANDS, ...BRANDS];
+---
+
+<section class="border-y border-neutral-200 bg-paper py-10" aria-label="Marken">
+  <p class="mb-6 text-center font-body text-sm text-neutral-500">
+    Wir montieren, warten und reparieren Geräte von
+  </p>
+
+  <div class="marquee-mask overflow-hidden motion-reduce:hidden">
+    <div class="marquee-track flex w-max items-center gap-16 whitespace-nowrap">
+      {
+        tripled.map((brand) => (
+          <span class="font-display text-2xl text-neutral-700 [font-variation-settings:'wdth'_112]">
+            {brand}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="hidden flex-wrap items-center justify-center gap-x-12 gap-y-3 px-5 motion-reduce:flex">
+    {
+      BRANDS.map((brand) => (
+        <span class="font-display text-2xl text-neutral-700 [font-variation-settings:'wdth'_112]">
+          {brand}
+        </span>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .marquee-mask {
+    mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  }
+
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-33.3333%);
+    }
+  }
+</style>

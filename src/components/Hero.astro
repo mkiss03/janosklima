@@ -1,0 +1,259 @@
+---
+import { COMPANY } from '@/lib/constants';
+---
+
+<section
+  id="hero"
+  data-hero
+  class="relative overflow-hidden bg-ice-900 pb-20 pt-14 md:pb-28 md:pt-20"
+  style="--t: 0"
+>
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(135deg, var(--ice-900) 0%, var(--ice-600) 70%); opacity: calc(1 - var(--t));"
+    >
+    </div>
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(135deg, var(--ice-900) 0%, var(--sun-600) 55%, var(--sun-500) 100%); opacity: var(--t);"
+    >
+    </div>
+
+    <svg
+      class="absolute inset-x-0 bottom-0 h-24 w-full md:h-32"
+      viewBox="0 0 800 160"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M-20 88 C 100 48, 200 128, 320 88 S 540 48, 660 88 S 780 128, 820 88"
+        fill="none"
+        stroke="var(--ice-400)"
+        stroke-width="5"
+        stroke-linecap="round"
+        vector-effect="non-scaling-stroke"
+        style="opacity: calc(0.25 + (1 - var(--t)) * 0.55); transform: translateX(calc((1 - var(--t)) * -14px)); transition: transform 0.2s;"
+      ></path>
+      <path
+        d="M-20 108 C 100 148, 200 68, 320 108 S 540 148, 660 108 S 780 68, 820 108"
+        fill="none"
+        stroke="var(--sun-600)"
+        stroke-width="5"
+        stroke-linecap="round"
+        vector-effect="non-scaling-stroke"
+        style="opacity: calc(0.25 + var(--t) * 0.55); transform: translateX(calc(var(--t) * 14px)); transition: transform 0.2s;"
+      ></path>
+    </svg>
+  </div>
+
+  <div class="relative mx-auto grid max-w-content grid-cols-12 gap-x-6 gap-y-14 px-5 sm:px-8">
+    <div class="col-span-12 flex flex-col items-start gap-7 md:col-span-5">
+      <h1 class="balance text-4xl text-paper sm:text-5xl md:text-6xl [font-variation-settings:'wdth'_120]">
+        {COMPANY.slogan}
+      </h1>
+      <p class="max-w-measure text-lg text-paper/85">
+        Klimaanlagen-Montage, Service und Wartung in Wien, Nieder- und
+        Oberösterreich und dem Burgenland.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={COMPANY.phoneATHref}
+          class="rounded-btn bg-sun-500 px-6 py-3 font-body text-base font-medium text-ink transition-colors duration-220 ease-studio hover:bg-sun-600 hover:text-paper"
+        >
+          Jetzt anrufen
+        </a>
+        <a
+          href="#angebot"
+          class="rounded-btn border border-paper/40 px-6 py-3 font-body text-base font-medium text-paper transition-colors duration-220 ease-studio hover:border-paper hover:bg-paper/10"
+        >
+          Angebot mit Foto anfragen
+        </a>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-7 md:col-start-6">
+      <div
+        class="rounded-frame border border-paper/15 bg-ice-900/30 p-6 backdrop-blur-[2px] sm:p-8"
+      >
+        <div class="mb-5 flex items-center justify-between font-body text-sm text-paper/70">
+          <span data-label-cold class="transition-opacity duration-220 ease-studio">Heizen</span>
+          <span class="font-display text-paper [font-variation-settings:'wdth'_112]">
+            Wohlfühltemperatur
+          </span>
+          <span data-label-warm class="transition-opacity duration-220 ease-studio">Kühlen</span>
+        </div>
+
+        <div class="flex items-center gap-4 sm:gap-6">
+          <svg
+            data-icon-cold
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+            aria-hidden="true"
+            class="shrink-0"
+            style="opacity: calc(0.35 + (1 - var(--t)) * 0.65); transform: scale(calc(0.85 + (1 - var(--t)) * 0.25));"
+          >
+            <g stroke="var(--ice-400)" stroke-width="2" stroke-linecap="round">
+              <line x1="14" y1="2" x2="14" y2="26"></line>
+              <line x1="4.5" y1="7" x2="23.5" y2="21"></line>
+              <line x1="23.5" y1="7" x2="4.5" y2="21"></line>
+            </g>
+          </svg>
+
+          <input
+            type="range"
+            id="temp-slider"
+            class="hero-range flex-1"
+            min="-5"
+            max="35"
+            step="1"
+            value="-5"
+            aria-label="Wohlfühltemperatur einstellen"
+          />
+
+          <svg
+            data-icon-warm
+            width="30"
+            height="30"
+            viewBox="0 0 30 30"
+            fill="none"
+            aria-hidden="true"
+            class="shrink-0"
+            style="opacity: calc(0.35 + var(--t) * 0.65); transform: scale(calc(0.85 + var(--t) * 0.25));"
+          >
+            <circle cx="15" cy="15" r="6" fill="var(--sun-500)"></circle>
+            <g stroke="var(--sun-500)" stroke-width="2" stroke-linecap="round">
+              <line x1="15" y1="1" x2="15" y2="4.5"></line>
+              <line x1="15" y1="25.5" x2="15" y2="29"></line>
+              <line x1="1" y1="15" x2="4.5" y2="15"></line>
+              <line x1="25.5" y1="15" x2="29" y2="15"></line>
+              <line x1="5.4" y1="5.4" x2="7.8" y2="7.8"></line>
+              <line x1="22.2" y1="22.2" x2="24.6" y2="24.6"></line>
+              <line x1="24.6" y1="5.4" x2="22.2" y2="7.8"></line>
+              <line x1="7.8" y1="22.2" x2="5.4" y2="24.6"></line>
+            </g>
+          </svg>
+        </div>
+
+        <div class="mt-3 flex items-center justify-between font-body text-sm text-paper/60">
+          <span>−5°C</span>
+          <span data-temp-readout class="font-display text-2xl text-paper [font-variation-settings:'wdth'_112]">
+            −5°C
+          </span>
+          <span>35°C</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="relative mx-auto mt-14 max-w-content px-5 font-body text-xs text-paper/55 sm:px-8">
+    Registrierter Dienstleister in Österreich · GZ 2026-0.408.541
+  </p>
+</section>
+
+<style>
+  .hero-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      var(--ice-400) 0%,
+      var(--paper) 50%,
+      var(--sun-500) 100%
+    );
+    outline-offset: 6px;
+  }
+
+  .hero-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 3px solid var(--ice-900);
+    cursor: pointer;
+    transition: transform 180ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .hero-range:active::-webkit-slider-thumb {
+    transform: scale(1.12);
+  }
+
+  .hero-range::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 3px solid var(--ice-900);
+    cursor: pointer;
+  }
+
+  .hero-range::-moz-range-track {
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--ice-400) 0%, var(--paper) 50%, var(--sun-500) 100%);
+  }
+</style>
+
+<script>
+  const MIN = -5;
+  const MAX = 35;
+  const DEFAULT_VALUE = 21;
+  const LOAD_DURATION = 2500;
+
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const input = document.getElementById('temp-slider') as HTMLInputElement | null;
+  const readout = document.querySelector<HTMLElement>('[data-temp-readout]');
+  const labelCold = document.querySelector<HTMLElement>('[data-label-cold]');
+  const labelWarm = document.querySelector<HTMLElement>('[data-label-warm]');
+
+  if (hero && input && readout) {
+    // The slider itself stays linear (-5…35 °C) so the numbers are honest,
+    // but the warm/cool colour balance is pivoted on the comfort point
+    // (21 °C = visually balanced) rather than on the numeric midpoint —
+    // otherwise the resting state would read as mostly orange.
+    const valueToColorT = (v: number) =>
+      v <= DEFAULT_VALUE
+        ? ((v - MIN) / (DEFAULT_VALUE - MIN)) * 0.5
+        : 0.5 + ((v - DEFAULT_VALUE) / (MAX - DEFAULT_VALUE)) * 0.5;
+
+    const applyValue = (value: number) => {
+      const rounded = Math.round(value);
+      const t = valueToColorT(rounded);
+      hero.style.setProperty('--t', t.toFixed(4));
+      input.value = String(rounded);
+      readout.textContent = `${rounded}°C`;
+      input.setAttribute('aria-valuetext', `${rounded} Grad Celsius`);
+      if (labelCold) labelCold.style.opacity = String(0.55 + (1 - t) * 0.45);
+      if (labelWarm) labelWarm.style.opacity = String(0.55 + t * 0.45);
+    };
+
+    input.addEventListener('input', () => applyValue(Number(input.value)));
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion) {
+      applyValue(DEFAULT_VALUE);
+    } else {
+      applyValue(MIN);
+      let start: number | null = null;
+      const easeOutCubic = (x: number) => 1 - Math.pow(1 - x, 3);
+
+      const step = (timestamp: number) => {
+        if (start === null) start = timestamp;
+        const elapsed = timestamp - start;
+        const progress = Math.min(elapsed / LOAD_DURATION, 1);
+        const eased = easeOutCubic(progress);
+        applyValue(MIN + (DEFAULT_VALUE - MIN) * eased);
+        if (progress < 1) requestAnimationFrame(step);
+      };
+
+      requestAnimationFrame(step);
+    }
+  }
+</script>

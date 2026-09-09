@@ -1,0 +1,62 @@
+---
+import Logo from './icons/Logo.astro';
+import PoweredByWelisse from './PoweredByWelisse.astro';
+import { COMPANY } from '@/lib/constants';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-ice-900 py-16 text-paper">
+  <div class="mx-auto max-w-content px-5 sm:px-8">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+      <div class="col-span-12 md:col-span-4">
+        <Logo dark />
+        <p class="mt-4 font-body text-sm text-paper/60">{COMPANY.slogan}</p>
+      </div>
+
+      <div class="col-span-6 md:col-span-4">
+        <p class="mb-3 font-body text-sm text-paper/50">Kontakt</p>
+        <ul class="space-y-1.5 font-body text-base text-paper/90">
+          <li><a href={COMPANY.phoneATHref} class="hover:text-ice-400">{COMPANY.phoneAT}</a></li>
+          <li><a href={COMPANY.phoneHUHref} class="hover:text-ice-400">{COMPANY.phoneHU}</a></li>
+          <li>
+            {COMPANY.email
+              ? <a href={`mailto:${COMPANY.email}`} class="hover:text-ice-400">{COMPANY.email}</a>
+              : <span class="text-sun-500">[TODO: E-Mail-Adresse]</span>}
+          </li>
+        </ul>
+        <p class="mt-4 font-body text-sm text-paper/70">
+          {COMPANY.addressStreet}<br />
+          {COMPANY.addressZip} {COMPANY.addressCity}, Ungarn
+        </p>
+        <p class="mt-3 font-body text-sm text-paper/50">
+          Erreichbarkeit: <span class="text-sun-500">[TODO: Öffnungszeiten]</span>
+        </p>
+      </div>
+
+      <div class="col-span-6 md:col-span-4">
+        <p class="mb-3 font-body text-sm text-paper/50">Rechtliches</p>
+        <ul class="space-y-1.5 font-body text-base text-paper/90">
+          <li><a href="/impressum" class="hover:text-ice-400">Impressum</a></li>
+          <li><a href="/datenschutz" class="hover:text-ice-400">Datenschutzerklärung</a></li>
+          <li><a href="/agb" class="hover:text-ice-400">AGB</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-paper/10 pt-6">
+      <p class="max-w-measure font-body text-xs leading-relaxed text-paper/45">
+        {COMPANY.name} · UID {COMPANY.vatId} · Steuernummer {COMPANY.taxNumber} ·
+        Geschäftsführer {COMPANY.ceo}<br />
+        Registriert im {COMPANY.registerAuthority} ({COMPANY.registerTrade}),
+        {COMPANY.registerNumber}, gültig {COMPANY.registerValidFrom}–{COMPANY.registerValidTo}.
+      </p>
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <p class="font-body text-xs text-paper/35">
+          © {currentYear} {COMPANY.name}
+        </p>
+        <PoweredByWelisse theme="dark" utm="ecocool-klima.at" />
+      </div>
+    </div>
+  </div>
+</footer>

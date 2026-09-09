@@ -1,0 +1,67 @@
+---
+import Logo from './icons/Logo.astro';
+import { COMPANY, NAV_LINKS } from '@/lib/constants';
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-neutral-200 bg-paper/90 backdrop-blur-sm"
+>
+  <div
+    class="mx-auto flex max-w-content items-center justify-between gap-4 px-5 py-3 sm:px-8"
+  >
+    <a href="#top" class="shrink-0" aria-label="Ecocool Klíma – Startseite">
+      <Logo />
+    </a>
+
+    <nav
+      class="hidden items-center gap-7 font-body text-sm text-ink md:flex"
+      aria-label="Hauptnavigation"
+    >
+      {
+        NAV_LINKS.map((link) => (
+          <a
+            href={link.href}
+            class="transition-colors duration-220 ease-studio hover:text-ice-600"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <div class="hidden items-center gap-1 font-body text-xs text-neutral-500 sm:flex" role="group" aria-label="Sprache">
+        <span class="text-ink" aria-current="page">DE</span>
+        <span aria-hidden="true">/</span>
+        <span class="cursor-not-allowed" title="Bald verfügbar">HU</span>
+      </div>
+
+      <a
+        href={COMPANY.phoneATHref}
+        class="hidden items-center gap-2 rounded-btn bg-ice-900 px-4 py-2 font-body text-sm font-medium text-paper transition-colors duration-220 ease-studio hover:bg-ice-600 md:inline-flex"
+      >
+        {COMPANY.phoneAT}
+      </a>
+    </div>
+  </div>
+
+  <nav
+    class="flex items-center gap-5 overflow-x-auto border-t border-neutral-200 px-5 py-2.5 font-body text-sm text-ink md:hidden"
+    aria-label="Hauptnavigation"
+  >
+    {
+      NAV_LINKS.map((link) => (
+        <a href={link.href} class="whitespace-nowrap">
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<a
+  href={COMPANY.phoneATHref}
+  class="fixed inset-x-0 bottom-0 z-40 flex items-center justify-center gap-2 bg-ice-900 py-3.5 text-center font-body text-base font-medium text-paper md:hidden"
+>
+  Jetzt anrufen · {COMPANY.phoneAT}
+</a>

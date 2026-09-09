@@ -1,0 +1,66 @@
+---
+import '@fontsource-variable/archivo';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@/styles/global.css';
+import { COMPANY, REGIONS_PRIMARY } from '@/lib/constants';
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex = false } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.png', Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: COMPANY.name,
+  image: ogImage.toString(),
+  telephone: COMPANY.phoneAT,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: COMPANY.addressStreet,
+    postalCode: COMPANY.addressZip,
+    addressLocality: COMPANY.addressCity,
+    addressCountry: 'HU',
+  },
+  areaServed: REGIONS_PRIMARY.map((r) => ({ '@type': 'AdministrativeArea', name: r })),
+  vatID: COMPANY.vatId,
+  founder: COMPANY.ceo,
+  slogan: COMPANY.slogan,
+  url: canonicalURL.toString(),
+};
+---
+
+<!doctype html>
+<html lang="de-AT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="de_AT" />
+    <meta property="og:url" content={canonicalURL} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+  </head>
+  <body id="top" class="bg-paper text-ink font-body text-base">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!-- ===== Powered by Welisse — sima HTML változat (nem React projektekhez) ===== -->
+<!-- A CSS-t tedd a globális stíluslapba, a linket a footer aljára. -->
+
+<style>
+.pbw {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .8rem;
+  line-height: 1;
+  letter-spacing: .01em;
+  text-decoration: none;
+  color: rgba(255, 255, 255, .45);   /* sötét footerhez; világoshoz: rgba(15,23,42,.5) */
+  opacity: .85;
+  transition: color .2s ease, opacity .2s ease;
+}
+.pbw img { display: block; height: 16px; width: auto; }
+.pbw strong { font-weight: 700; color: rgba(255, 255, 255, .85); } /* világoshoz: #0F172A */
+.pbw:hover { opacity: 1; color: #00E5FF; }
+.pbw:focus-visible { outline: 2px solid #00E5FF; outline-offset: 4px; border-radius: 6px; }
+</style>
+
+<a class="pbw"
+   href="https://welisse.hu/?utm_source=PROJEKT_DOMAIN&utm_medium=footer&utm_campaign=powered_by"
+   target="_blank" rel="noopener"
+   aria-label="Készítette a Welisse — welisse.hu">
+  <span>Powered by</span>
+  <img src="/brand/welisse-mark.png"
+       srcset="/brand/welisse-mark.png 1x, /brand/welisse-mark@2x.png 2x"
+       alt="" width="30" height="16" loading="lazy" decoding="async">
+  <strong>Welisse</strong>
+</a>
