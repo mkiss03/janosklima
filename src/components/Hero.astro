@@ -1,5 +1,6 @@
 ---
 import { COMPANY } from '@/lib/constants';
+import LogoMark from './icons/LogoMark.astro';
 ---
 
 <section
@@ -48,6 +49,13 @@ import { COMPANY } from '@/lib/constants';
 
   <div class="relative mx-auto grid max-w-content grid-cols-12 gap-x-6 gap-y-14 px-5 sm:px-8">
     <div class="col-span-12 flex flex-col items-start gap-7 md:col-span-5">
+      <div class="flex items-center gap-3.5">
+        <LogoMark class="h-11 w-11 shrink-0 sm:h-14 sm:w-14" />
+        <span class="font-display text-2xl text-paper [font-variation-settings:'wdth'_115] sm:text-[2rem]">
+          Ecocool&nbsp;Klíma
+        </span>
+      </div>
+
       <h1 class="balance text-4xl text-paper sm:text-5xl md:text-6xl [font-variation-settings:'wdth'_120]">
         {COMPANY.slogan}
       </h1>
