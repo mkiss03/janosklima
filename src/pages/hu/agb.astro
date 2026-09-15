@@ -1,0 +1,105 @@
+---
+import LegalLayout from '@/layouts/LegalLayout.astro';
+import TodoNote from '@/components/TodoNote.astro';
+import { COMPANY, PRICING } from '@/lib/constants';
+---
+
+<LegalLayout
+  lang="hu"
+  title="ÁSZF – Ecocool Klíma"
+  description="Az Ecocool Klíma Kft. általános szerződési feltételei."
+>
+  <h1 class="mb-8 text-3xl text-ink [font-variation-settings:'wdth'_118]">
+    Általános Szerződési Feltételek
+  </h1>
+
+  <p class="mb-6 font-body text-base">
+    <TodoNote>
+      [TODO: von Rechtsberatung prüfen lassen — ez a szöveg tervezet, nem
+      jogilag érvényes ÁSZF-változat.]
+    </TodoNote>
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Hatály</h2>
+  <p class="font-body text-base text-neutral-700">
+    Ezek a feltételek az {COMPANY.name} és ausztriai ügyfelei között
+    létrejövő, klímaberendezések telepítésére, javítására és
+    karbantartására vonatkozó szerződésekre érvényesek.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Ez a weboldal nem megrendelőrendszer
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    Az {COMPANY.name} weboldala kizárólag tájékoztatási célt szolgál. Nem
+    tartalmaz űrlapot, kosarat vagy fizetési funkciót. Magán a weboldalon
+    keresztül nem jön létre szerződés, és nem történik fizetés
+    elfogadása. A weboldalon szereplő minden adat (pl. irányárak,
+    szolgáltatásleírások) nem kötelező érvényű, és nem minősül jogilag
+    kötelező ajánlatnak.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Ajánlat és szerződéskötés
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    A telepítés {PRICING.startingPrice} + áfától indul
+    (legfeljebb {PRICING.maxPipeLength} vezetékhosszig, legfeljebb{' '}
+    {PRICING.maxRoomHeight} belmagasságig) – ez az érték egy nem
+    kötelező érvényű irányár. A kötelező érvényű árajánlatot kizárólag
+    helyszíni szemle után, vagy az ügyfél által telefonon vagy e-mailben
+    közvetlenül megküldött fotók, illetve videó alapján készítjük el.
+    Szerződés csak ezen közvetlen kommunikáció útján jön létre – nem a
+    weboldal használatával.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Adatok és fotók megosztása
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    Az árajánlathoz szükséges adatokat, fotókat vagy videókat az
+    ügyfelek közvetlenül telefonon vagy e-mailben küldik el az{' '}
+    {COMPANY.name} részére. Ez az adatátvitel a weboldalon kívül
+    történik, és az adott kommunikációs csatorna (pl. a használt
+    e-mail-szolgáltató) felelősségi körébe tartozik.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Fizetési feltételek</h2>
+  <p class="font-body text-base text-neutral-700">
+    A fizetés nem a weboldalon keresztül történik.{' '}
+    <TodoNote>[TODO: Zahlungsbedingungen festlegen — pl. esedékesség, fizetési mód, előleg]</TodoNote>
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Szavatosság
+  </h2>
+  <p class="font-body text-base"><TodoNote>[TODO: Gewährleistungsregelung festlegen]</TodoNote></p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Felelősség</h2>
+  <p class="font-body text-base text-neutral-700">
+    A weboldalon szereplő, nem kötelező érvényű adatok (pl. irányárak,
+    általános szolgáltatásleírások) helyességéért nem vállalunk
+    felelősséget. Kizárólag az egyedileg elkészített árajánlat kötelező
+    érvényű.{' '}
+    <TodoNote>[TODO: weitergehende Haftungsregelung von Rechtsberatung festlegen lassen]</TodoNote>
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Elállási jog
+  </h2>
+  <p class="font-body text-base">
+    <TodoNote>
+      [TODO: von Rechtsberatung prüfen lassen — online űrlap hiányában is
+      előfordulhat, hogy a telefonon/e-mailben megkötött szerződés az
+      osztrák FAGG szerint távollévők közötti szerződésnek minősül.
+      Tisztázandó: érvényesül-e valamelyik kivétel (pl. helyszíni szemle
+      a szerződéskötés előtt, sürgős javítás az ügyfél kifejezett
+      kérésére).]
+    </TodoNote>
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Alkalmazandó jog és illetékesség
+  </h2>
+  <p class="font-body text-base"><TodoNote>[TODO: anwendbares Recht und Gerichtsstand festlegen]</TodoNote></p>
+</LegalLayout>

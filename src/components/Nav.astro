@@ -1,6 +1,34 @@
 ---
 import Logo from './icons/Logo.astro';
 import { COMPANY, NAV_LINKS } from '@/lib/constants';
+
+interface Props {
+  lang?: 'de' | 'hu';
+}
+const { lang = 'de' } = Astro.props;
+
+const navLabels: Record<'de' | 'hu', Record<string, string>> = {
+  de: {
+    leistungen: 'Leistungen',
+    preise: 'Preise',
+    einsatzgebiet: 'Einsatzgebiet',
+    kontakt: 'Kontakt',
+  },
+  hu: {
+    leistungen: 'Szolgáltatások',
+    preise: 'Árak',
+    einsatzgebiet: 'Területünk',
+    kontakt: 'Kapcsolat',
+  },
+};
+const t = navLabels[lang];
+const labelFor = (href: string) => t[href.replace('#', '')] ?? href;
+
+const callLabel = lang === 'hu' ? 'Hívás most' : 'Jetzt anrufen';
+
+const pathname = Astro.url.pathname;
+const dePath = pathname.replace(/^\/hu/, '') || '/';
+const huPath = '/hu' + (pathname === '/' ? '/' : pathname.replace(/^\/hu/, ''));
 ---
 
 <header
@@ -23,7 +51,7 @@ import { COMPANY, NAV_LINKS } from '@/lib/constants';
             href={link.href}
             class="transition-colors duration-220 ease-studio hover:text-ice-600"
           >
-            {link.label}
+            {labelFor(link.href)}
           </a>
         ))
       }
@@ -31,9 +59,9 @@ import { COMPANY, NAV_LINKS } from '@/lib/constants';
 
     <div class="flex items-center gap-4">
       <div class="hidden items-center gap-1 font-body text-xs text-neutral-500 sm:flex" role="group" aria-label="Sprache">
-        <span class="text-ink" aria-current="page">DE</span>
+        <a href={dePath} class={lang === 'de' ? 'text-ink' : 'hover:text-ice-600'} aria-current={lang === 'de' ? 'page' : undefined}>DE</a>
         <span aria-hidden="true">/</span>
-        <span class="cursor-not-allowed" title="Bald verfügbar">HU</span>
+        <a href={huPath} class={lang === 'hu' ? 'text-ink' : 'hover:text-ice-600'} aria-current={lang === 'hu' ? 'page' : undefined}>HU</a>
       </div>
 
       <a
@@ -52,7 +80,7 @@ import { COMPANY, NAV_LINKS } from '@/lib/constants';
     {
       NAV_LINKS.map((link) => (
         <a href={link.href} class="whitespace-nowrap">
-          {link.label}
+          {labelFor(link.href)}
         </a>
       ))
     }
@@ -63,5 +91,5 @@ import { COMPANY, NAV_LINKS } from '@/lib/constants';
   href={COMPANY.phoneATHref}
   class="fixed inset-x-0 bottom-0 z-40 flex items-center justify-center gap-2 bg-ice-900 py-3.5 text-center font-body text-base font-medium text-paper md:hidden"
 >
-  Jetzt anrufen · {COMPANY.phoneAT}
+  {callLabel} · {COMPANY.phoneAT}
 </a>

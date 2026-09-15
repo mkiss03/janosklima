@@ -1,9 +1,11 @@
 ---
 import LegalLayout from '@/layouts/LegalLayout.astro';
+import TodoNote from '@/components/TodoNote.astro';
 import { COMPANY, PRICING } from '@/lib/constants';
 ---
 
 <LegalLayout
+  lang="de"
   title="AGB – Ecocool Klíma"
   description="Allgemeine Geschäftsbedingungen der Ecocool Klíma Kft."
 >
@@ -11,9 +13,11 @@ import { COMPANY, PRICING } from '@/lib/constants';
     Allgemeine Geschäftsbedingungen
   </h1>
 
-  <p class="mb-6 font-body text-base text-sun-600">
-    [TODO: von Rechtsberatung prüfen lassen — dieser Text ist ein Entwurf und
-    keine rechtsgültige AGB-Fassung.]
+  <p class="mb-6 font-body text-base">
+    <TodoNote>
+      [TODO: von Rechtsberatung prüfen lassen — dieser Text ist ein Entwurf und
+      keine rechtsgültige AGB-Fassung.]
+    </TodoNote>
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Geltungsbereich</h2>
@@ -24,37 +28,78 @@ import { COMPANY, PRICING } from '@/lib/constants';
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Diese Website ist kein Bestellsystem
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    Die Website von {COMPANY.name} dient ausschließlich der Information.
+    Sie enthält kein Formular, keinen Warenkorb und keine
+    Zahlungsfunktion. Über die Website selbst kommt kein Vertrag zustande
+    und es werden keine Zahlungen entgegengenommen. Alle Angaben auf der
+    Website (z. B. Richtpreise, Leistungsbeschreibungen) sind
+    unverbindlich und stellen kein bindendes Angebot im rechtlichen Sinn
+    dar.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Angebot und Vertragsabschluss
   </h2>
   <p class="font-body text-base text-neutral-700">
     Die Montage beginnt bei {PRICING.startingPrice} {PRICING.vatNote}
     (bis {PRICING.maxPipeLength} Leitungslänge, bis {PRICING.maxRoomHeight}{' '}
-    Raumhöhe). Das endgültige Angebot erstellen wir nach einer Besichtigung
-    vor Ort oder anhand von übermittelten Fotos bzw. einem Video.
+    Raumhöhe) – dieser Wert ist ein unverbindlicher Richtwert. Das
+    verbindliche Angebot erstellen wir ausschließlich nach einer
+    Besichtigung vor Ort oder anhand von Fotos bzw. einem Video, das uns
+    die Kundin oder der Kunde direkt per Telefon oder E-Mail übermittelt.
+    Ein Vertrag kommt erst durch diese direkte Kommunikation zustande –
+    nicht durch die Nutzung der Website.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Austausch von Daten und Fotos
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    Für die Angebotserstellung erforderliche Angaben, Fotos oder Videos
+    übermitteln Kundinnen und Kunden direkt per Telefon oder E-Mail an{' '}
+    {COMPANY.name} Diese Übermittlung erfolgt außerhalb der Website und
+    liegt in der Verantwortung der jeweiligen Kommunikationswege (z. B.
+    des verwendeten E-Mail-Anbieters).
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Zahlungsbedingungen</h2>
-  <p class="font-body text-base text-sun-600">[TODO: Zahlungsbedingungen festlegen]</p>
+  <p class="font-body text-base text-neutral-700">
+    Die Zahlung erfolgt nicht über die Website.{' '}
+    <TodoNote>[TODO: Zahlungsbedingungen festlegen — z. B. Fälligkeit, Zahlungsart, Anzahlung]</TodoNote>
+  </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Gewährleistung
   </h2>
-  <p class="font-body text-base text-sun-600">[TODO: Gewährleistungsregelung festlegen]</p>
+  <p class="font-body text-base"><TodoNote>[TODO: Gewährleistungsregelung festlegen]</TodoNote></p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Haftung</h2>
-  <p class="font-body text-base text-sun-600">[TODO: Haftungsregelung festlegen]</p>
+  <p class="font-body text-base text-neutral-700">
+    Für die Richtigkeit unverbindlicher Angaben auf der Website (z. B.
+    Richtpreise, allgemeine Leistungsbeschreibungen) wird keine Gewähr
+    übernommen. Verbindlich ist ausschließlich das individuell erstellte
+    Angebot.{' '}
+    <TodoNote>[TODO: weitergehende Haftungsregelung von Rechtsberatung festlegen lassen]</TodoNote>
+  </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Rücktrittsrecht
   </h2>
-  <p class="font-body text-base text-sun-600">
-    [TODO: von Rechtsberatung prüfen lassen — Verbraucherrücktrittsrecht bei
-    außerhalb von Geschäftsräumen geschlossenen Verträgen bzw. Ausnahmen für
-    dringende Reparaturen]
+  <p class="font-body text-base">
+    <TodoNote>
+      [TODO: von Rechtsberatung prüfen lassen — auch ohne Online-Formular
+      kann ein per Telefon/E-Mail geschlossener Vertrag als
+      Fernabsatzvertrag gelten (FAGG). Zu klären: ob und welche Ausnahmen
+      greifen (z. B. Besichtigung vor Ort vor Vertragsabschluss, dringende
+      Reparaturen auf ausdrücklichen Kundenwunsch).]
+    </TodoNote>
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Anwendbares Recht und Gerichtsstand
   </h2>
-  <p class="font-body text-base text-sun-600">[TODO: anwendbares Recht und Gerichtsstand festlegen]</p>
+  <p class="font-body text-base"><TodoNote>[TODO: anwendbares Recht und Gerichtsstand festlegen]</TodoNote></p>
 </LegalLayout>

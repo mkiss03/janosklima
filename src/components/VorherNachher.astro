@@ -1,46 +1,89 @@
 ---
 import { Image } from 'astro:assets';
+import TodoNote from './TodoNote.astro';
 import wohnzimmerVorher from '@/assets/images/vorher-nachher/wohnzimmer-vorher.jpg';
 import wohnzimmerNachher from '@/assets/images/vorher-nachher/wohnzimmer-nachher.jpg';
 import fassadeVorher from '@/assets/images/vorher-nachher/fassade-vorher.jpg';
 import fassadeNachher from '@/assets/images/vorher-nachher/fassade-nachher.jpg';
 
-const projects = [
-  {
-    id: 'wohnzimmer',
-    title: 'Wohnzimmer – Innengerät',
-    vorher: wohnzimmerVorher,
-    nachher: wohnzimmerNachher,
-    vorherAlt: 'Wandhalterung für das Innengerät an der Wohnzimmerwand, vor der Montage',
-    nachherAlt: 'Daikin Innengerät montiert, Leitungsführung im Kanal an der Decke',
-    vorherCaption: 'Wandhalterung, vor der Montage',
-    nachherCaption: 'Daikin Innengerät, Leitungsführung im Kanal an der Decke – Aufnahme während der Montage',
-    todo: null,
+interface Props {
+  lang?: 'de' | 'hu';
+}
+const { lang = 'de' } = Astro.props;
+
+const copy = {
+  de: {
+    heading: 'Vorher & nachher',
+    vorherWord: 'Vorher',
+    nachherWord: 'Nachher',
+    projects: [
+      {
+        id: 'wohnzimmer',
+        title: 'Wohnzimmer – Innengerät',
+        vorherAlt: 'Wandhalterung für das Innengerät an der Wohnzimmerwand, vor der Montage',
+        nachherAlt: 'Daikin Innengerät montiert, Leitungsführung im Kanal an der Decke',
+        vorherCaption: 'Wandhalterung, vor der Montage',
+        nachherCaption: 'Daikin Innengerät, Leitungsführung im Kanal an der Decke – Aufnahme während der Montage',
+        todo: null as string | null,
+      },
+      {
+        id: 'fassade',
+        title: 'Fassade – Außengerät',
+        vorherAlt: 'Vorbereitete Wanddurchführung an der Fassade, vor der Montage',
+        nachherAlt: 'Daikin Außengerät auf Wandkonsole montiert',
+        vorherCaption: 'Vorbereitete Wanddurchführung, vor der Montage',
+        nachherCaption: 'Daikin Außengerät auf Wandkonsole montiert',
+        todo: 'TODO: neu fotografieren, gleiche Position',
+      },
+    ],
   },
-  {
-    id: 'fassade',
-    title: 'Fassade – Außengerät',
-    vorher: fassadeVorher,
-    nachher: fassadeNachher,
-    vorherAlt: 'Vorbereitete Wanddurchführung an der Fassade, vor der Montage',
-    nachherAlt: 'Daikin Außengerät auf Wandkonsole montiert',
-    vorherCaption: 'Vorbereitete Wanddurchführung, vor der Montage',
-    nachherCaption: 'Daikin Außengerät auf Wandkonsole montiert',
-    todo: 'TODO: neu fotografieren, gleiche Position',
+  hu: {
+    heading: 'Előtte és utána',
+    vorherWord: 'Előtte',
+    nachherWord: 'Utána',
+    projects: [
+      {
+        id: 'wohnzimmer',
+        title: 'Nappali – beltéri egység',
+        vorherAlt: 'Fali tartó a beltéri egységhez a nappali falán, szerelés előtt',
+        nachherAlt: 'Felszerelt Daikin beltéri egység, csővezeték a mennyezeti kanálban',
+        vorherCaption: 'Fali tartó, szerelés előtt',
+        nachherCaption: 'Daikin beltéri egység, csővezeték a mennyezeti kanálban – felvétel szerelés közben',
+        todo: null as string | null,
+      },
+      {
+        id: 'fassade',
+        title: 'Homlokzat – kültéri egység',
+        vorherAlt: 'Előkészített falátvezetés a homlokzaton, szerelés előtt',
+        nachherAlt: 'Felszerelt Daikin kültéri egység fali konzolon',
+        vorherCaption: 'Előkészített falátvezetés, szerelés előtt',
+        nachherCaption: 'Daikin kültéri egység fali konzolon felszerelve',
+        todo: 'TODO: újra fotózni, azonos pozícióból',
+      },
+    ],
   },
-];
+} as const;
+
+const t = copy[lang];
+
+const images = {
+  wohnzimmer: { vorher: wohnzimmerVorher, nachher: wohnzimmerNachher },
+  fassade: { vorher: fassadeVorher, nachher: fassadeNachher },
+};
+
+const projects = t.projects.map((p) => ({ ...p, ...images[p.id as keyof typeof images] }));
 ---
 
 <section id="referenzen" class="bg-[#0B0B0B] py-20 md:py-28">
   <div class="mx-auto max-w-content px-5 sm:px-8">
     <h2 class="mb-14 max-w-measure text-3xl text-paper md:text-4xl [font-variation-settings:'wdth'_118]">
-      Vorher &amp; nachher
+      {t.heading}
     </h2>
 
     <div class="flex flex-col gap-24 md:gap-32">
       {
         projects.map((project) => (
-          <div class="vn-project" data-vn-project>
+          <div class="vn-project" data-vn-project data-vorher-word={t.vorherWord} data-nachher-word={t.nachherWord}>
             <p class="mb-4 font-body text-sm text-paper/60">{project.title}</p>
 
             <div
@@ -48,11 +91,11 @@ const projects = [
               data-vn-compare
               role="slider"
               tabindex="0"
-              aria-label={`Bildvergleich ${project.title}: vorher und nachher`}
+              aria-label={`${lang === 'hu' ? 'Kép-összehasonlítás' : 'Bildvergleich'} ${project.title}: ${t.vorherWord.toLowerCase()} / ${t.nachherWord.toLowerCase()}`}
               aria-valuemin="0"
               aria-valuemax="100"
               aria-valuenow="0"
-              aria-valuetext="Vorher"
+              aria-valuetext={t.vorherWord}
             >
               <Image
                 src={project.vorher}
@@ -99,14 +142,14 @@ const projects = [
               </div>
 
               <span class="pointer-events-none absolute left-3 top-3 rounded-btn bg-ice-900/70 px-2.5 py-1 font-body text-xs text-paper">
-                Vorher
+                {t.vorherWord}
               </span>
               <span
                 class="pointer-events-none absolute right-3 top-3 rounded-btn bg-sun-600/80 px-2.5 py-1 font-body text-xs text-paper transition-opacity duration-220 ease-studio"
                 data-vn-after-label
                 style="opacity: 0;"
               >
-                Nachher
+                {t.nachherWord}
               </span>
             </div>
 
@@ -119,9 +162,7 @@ const projects = [
               >
                 {project.vorherCaption}
               </p>
-              {project.todo && (
-                <p class="font-body text-xs font-medium text-sun-500">[{project.todo}]</p>
-              )}
+              {project.todo && <TodoNote>[{project.todo}]</TodoNote>}
             </div>
           </div>
         ))
@@ -146,6 +187,8 @@ const projects = [
     const captionEl = project.querySelector<HTMLElement>('[data-vn-caption]');
     const vorherCaption = captionEl?.dataset.vorherCaption ?? '';
     const nachherCaption = captionEl?.dataset.nachherCaption ?? '';
+    const vorherWord = project.dataset.vorherWord ?? 'Vorher';
+    const nachherWord = project.dataset.nachherWord ?? 'Nachher';
     if (!compare || !afterWrap || !divider || !handle) return;
 
     let dragging = false;
@@ -158,7 +201,7 @@ const projects = [
       handle.style.left = `${current}%`;
       compare.setAttribute('aria-valuenow', String(Math.round(current)));
       const revealed = current > 55;
-      compare.setAttribute('aria-valuetext', revealed ? 'Nachher' : 'Vorher');
+      compare.setAttribute('aria-valuetext', revealed ? nachherWord : vorherWord);
       if (afterLabel) afterLabel.style.opacity = current > 15 ? '1' : '0';
       if (captionEl) captionEl.textContent = revealed ? nachherCaption : vorherCaption;
     };

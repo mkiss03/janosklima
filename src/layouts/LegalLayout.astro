@@ -6,16 +6,17 @@ import Footer from '@/components/Footer.astro';
 interface Props {
   title: string;
   description: string;
+  lang?: 'de' | 'hu';
 }
-const { title, description } = Astro.props;
+const { title, description, lang = 'de' } = Astro.props;
 ---
 
-<Layout title={title} description={description}>
-  <Nav />
+<Layout title={title} description={description} lang={lang}>
+  <Nav lang={lang} />
   <main class="mx-auto max-w-content px-5 py-16 sm:px-8 md:py-24">
     <div class="max-w-measure">
       <slot />
     </div>
   </main>
-  <Footer />
+  <Footer lang={lang} />
 </Layout>

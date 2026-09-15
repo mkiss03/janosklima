@@ -1,0 +1,73 @@
+---
+import LegalLayout from '@/layouts/LegalLayout.astro';
+import TodoNote from '@/components/TodoNote.astro';
+import { COMPANY } from '@/lib/constants';
+---
+
+<LegalLayout
+  lang="hu"
+  title="Adatvédelmi tájékoztató – Ecocool Klíma"
+  description="Az Ecocool Klíma Kft. adatvédelmi tájékoztatója."
+>
+  <h1 class="mb-8 text-3xl text-ink [font-variation-settings:'wdth'_118]">
+    Adatvédelmi tájékoztató
+  </h1>
+
+  <p class="mb-6 font-body text-base">
+    <TodoNote>
+      [TODO: von Rechtsberatung prüfen lassen — ez a szöveg tervezet, nem
+      helyettesíti a GDPR szerinti jogi ellenőrzést.]
+    </TodoNote>
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Adatkezelő</h2>
+  <p class="font-body text-base text-neutral-700">
+    {COMPANY.name}, {COMPANY.addressStreet}, {COMPANY.addressZip} {COMPANY.addressCity}, Magyarország.<br />
+    Telefon: {COMPANY.phoneAT} · E-mail:{' '}
+    {COMPANY.email || <TodoNote>[TODO: e-mail cím]</TodoNote>}
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Kapcsolatfelvétel
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    Ez a weboldal nem tartalmaz kapcsolatfelvételi vagy ajánlatkérő
+    űrlapot. Ha telefonon hív minket, vagy e-mailt ír, az így megadott
+    adatokat (pl. név, elérhetőség, az ügy leírása, esetleg küldött
+    fotók) kizárólag a megkeresés intézésére használjuk fel (GDPR 6.
+    cikk (1) b) pont – szerződés előkészítése). Ez a kommunikáció
+    telefonon, illetve az Ön e-mail-szolgáltatóján keresztül zajlik,
+    nem a weboldalon.
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
+    Tárhelyszolgáltatás / szervernaplók
+  </h2>
+  <p class="font-body text-base text-neutral-700">
+    Ezt a weboldalt a Vercel (Vercel Inc., USA) szolgáltatja. Az oldal
+    megnyitásakor a Vercel automatikusan feldolgoz technikai adatokat
+    (pl. IP-cím, a hozzáférés dátuma és időpontja), ahogy ez minden
+    weboldal-látogatásnál technikailag szükséges. Ezeket az adatokat nem
+    kapcsoljuk össze más adatforrásokkal.{' '}
+    <TodoNote>
+      [TODO: von Rechtsberatung prüfen lassen — adatfeldolgozási
+      szerződés, illetve általános adatvédelmi kikötések a Vercellel, a
+      USA-ba történő adattovábbítás miatt]
+    </TodoNote>
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Sütik</h2>
+  <p class="font-body text-base text-neutral-700">
+    Ez a weboldal nem használ elemző vagy marketing célú sütiket.{' '}
+    <TodoNote>[TODO: módosítás esetén — pl. analitika bevezetésekor — cookie-tájékoztató kiegészítése]</TodoNote>
+  </p>
+
+  <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Az Ön jogai</h2>
+  <p class="font-body text-base text-neutral-700">
+    Önt megilleti a hozzáférés, helyesbítés, törlés és az adatkezelés
+    korlátozásának joga, valamint az adathordozhatósághoz és a
+    tiltakozáshoz való jog. Emellett panasszal élhet az illetékes
+    adatvédelmi hatóságnál.{' '}
+    <TodoNote>[TODO: illetékes adatvédelmi hatóság megnevezése]</TodoNote>
+  </p>
+</LegalLayout>

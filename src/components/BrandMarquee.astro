@@ -1,12 +1,19 @@
 ---
 import { BRANDS } from '@/lib/constants';
 
+interface Props {
+  lang?: 'de' | 'hu';
+}
+const { lang = 'de' } = Astro.props;
+
+const caption = lang === 'hu' ? 'Ezeket a márkákat szereljük, tartjuk karban és javítjuk' : 'Wir montieren, warten und reparieren Geräte von';
+
 const tripled = [...BRANDS, ...BRANDS, ...BRANDS];
 ---
 
 <section class="border-y border-neutral-200 bg-paper py-10" aria-label="Marken">
-  <p class="mb-6 text-center font-body text-sm text-neutral-500">
-    Wir montieren, warten und reparieren Geräte von
+  <p class="mb-6 text-center font-body text-sm text-neutral-700">
+    {caption}
   </p>
 
   <div class="marquee-mask overflow-hidden motion-reduce:hidden">

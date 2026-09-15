@@ -1,9 +1,11 @@
 ---
 import LegalLayout from '@/layouts/LegalLayout.astro';
+import TodoNote from '@/components/TodoNote.astro';
 import { COMPANY } from '@/lib/constants';
 ---
 
 <LegalLayout
+  lang="de"
   title="Impressum – Ecocool Klíma"
   description="Impressum der Ecocool Klíma Kft."
 >
@@ -14,14 +16,14 @@ import { COMPANY } from '@/lib/constants';
   <p class="mb-6 font-body text-base text-ink">{COMPANY.addressZip} {COMPANY.addressCity}, Ungarn</p>
 
   <dl class="mb-8 space-y-2 font-body text-base text-ink">
-    <div><dt class="inline text-neutral-500">Geschäftsführer: </dt><dd class="inline">{COMPANY.ceo}</dd></div>
-    <div><dt class="inline text-neutral-500">UID-Nummer: </dt><dd class="inline">{COMPANY.vatId}</dd></div>
-    <div><dt class="inline text-neutral-500">Steuernummer (Ungarn): </dt><dd class="inline">{COMPANY.taxNumber}</dd></div>
-    <div><dt class="inline text-neutral-500">Telefon: </dt><dd class="inline">{COMPANY.phoneAT} · {COMPANY.phoneHU}</dd></div>
+    <div><dt class="inline text-neutral-700">Geschäftsführer: </dt><dd class="inline">{COMPANY.ceo}</dd></div>
+    <div><dt class="inline text-neutral-700">UID-Nummer: </dt><dd class="inline">{COMPANY.vatId}</dd></div>
+    <div><dt class="inline text-neutral-700">Steuernummer (Ungarn): </dt><dd class="inline">{COMPANY.taxNumber}</dd></div>
+    <div><dt class="inline text-neutral-700">Telefon: </dt><dd class="inline">{COMPANY.phoneAT} · {COMPANY.phoneHU}</dd></div>
     <div>
-      <dt class="inline text-neutral-500">E-Mail: </dt>
+      <dt class="inline text-neutral-700">E-Mail: </dt>
       <dd class="inline">
-        {COMPANY.email || <span class="text-sun-600">[TODO: E-Mail-Adresse]</span>}
+        {COMPANY.email || <TodoNote>[TODO: E-Mail-Adresse]</TodoNote>}
       </dd>
     </div>
   </dl>
@@ -39,17 +41,21 @@ import { COMPANY } from '@/lib/constants';
     Streitschlichtung
   </h2>
   <p class="font-body text-base text-neutral-700">
-    <span class="text-sun-600">[TODO: von Rechtsberatung prüfen lassen — Hinweis auf
-    Online-Streitbeilegungsplattform (OS-Plattform) der EU-Kommission und ggf.
-    zuständige Schlichtungsstelle, falls für dieses Unternehmen erforderlich.]</span>
+    <TodoNote>
+      [TODO: von Rechtsberatung prüfen lassen — Hinweis auf
+      Online-Streitbeilegungsplattform (OS-Plattform) der EU-Kommission und ggf.
+      zuständige Schlichtungsstelle, falls für dieses Unternehmen erforderlich.]
+    </TodoNote>
   </p>
 
   <h2 class="mb-3 mt-10 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Haftungshinweis
   </h2>
   <p class="font-body text-base text-neutral-700">
-    <span class="text-sun-600">[TODO: von Rechtsberatung prüfen lassen — Haftung für
-    Inhalte, Links und angewandtes Recht (Verweis auf österreichisches bzw.
-    ungarisches Recht).]</span>
+    <TodoNote>
+      [TODO: von Rechtsberatung prüfen lassen — Haftung für
+      Inhalte, Links und angewandtes Recht (Verweis auf österreichisches bzw.
+      ungarisches Recht).]
+    </TodoNote>
   </p>
 </LegalLayout>

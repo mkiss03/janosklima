@@ -2,6 +2,27 @@
 import { Image } from 'astro:assets';
 import fahrzeug from '@/assets/images/misc/firmenfahrzeug.jpg';
 import { COMPANY } from '@/lib/constants';
+
+interface Props {
+  lang?: 'de' | 'hu';
+}
+const { lang = 'de' } = Astro.props;
+
+const copy = {
+  de: {
+    title: 'Über uns',
+    body: `Die ${COMPANY.name} ist ein ungarisches Fachunternehmen für Kälte- und Klimatechnik mit Registrierung als Dienstleister in Österreich (${COMPANY.registerTrade}). Wir montieren, warten und reparieren Klimaanlagen der Marken Toshiba, Mitsubishi Electric, Daikin und Gree nach den Vorgaben der Hersteller.`,
+    ceoLabel: 'Geschäftsführer',
+    alt: 'Firmenfahrzeug der Ecocool Klíma Kft.',
+  },
+  hu: {
+    title: 'Rólunk',
+    body: `Az ${COMPANY.name} magyar hűtés- és klímatechnikai szakcég, amely Ausztriában is bejegyzett szolgáltató (${COMPANY.registerTrade}). Toshiba, Mitsubishi Electric, Daikin és Gree márkájú klímaberendezéseket szerelünk, tartunk karban és javítunk, a gyártói előírások szerint.`,
+    ceoLabel: 'Ügyvezető',
+    alt: 'Az Ecocool Klíma Kft. cégautója',
+  },
+} as const;
+const t = copy[lang];
 ---
 
 <section class="bg-paper py-20 md:py-28">
@@ -9,34 +30,26 @@ import { COMPANY } from '@/lib/constants';
     <div class="grid grid-cols-12 gap-x-6 gap-y-10">
       <div class="col-span-12 md:col-span-7">
         <h2 class="mb-6 text-3xl text-ink md:text-4xl [font-variation-settings:'wdth'_118]">
-          Über uns
+          {t.title}
         </h2>
         <p class="max-w-measure font-body text-lg text-neutral-700">
-          Die {COMPANY.name} ist ein ungarisches Fachunternehmen für
-          Kälte- und Klimatechnik mit Registrierung als Dienstleister in
-          Österreich ({COMPANY.registerTrade}). Wir montieren, warten und
-          reparieren Klimaanlagen der Marken Toshiba, Mitsubishi Electric,
-          Daikin und Gree nach den Vorgaben der Hersteller.
+          {t.body}
         </p>
-        <p class="mt-4 max-w-measure font-body text-base text-neutral-500">
-          Geschäftsführer: {COMPANY.ceo} <span class="text-sun-600">[TODO: darf der Name genannt werden?]</span>
+        <p class="mt-4 max-w-measure font-body text-base text-neutral-700">
+          {t.ceoLabel}: {COMPANY.ceo}
         </p>
       </div>
 
       <div class="col-span-12 md:col-span-5">
         <Image
           src={fahrzeug}
-          alt="Firmenfahrzeug der Ecocool Klíma Kft."
+          alt={t.alt}
           widths={[400, 800, 1200]}
           sizes="(min-width: 768px) 480px, 100vw"
           format="webp"
           loading="lazy"
           class="w-full rounded-frame object-cover"
         />
-        <p class="mt-2 font-body text-xs text-sun-600">
-          [TODO: Kennzeichen unkenntlich machen; Heckscheibe zeigt noch
-          „Frankó &amp; Nyerges" – prüfen, ob dieses Foto so freigegeben ist]
-        </p>
       </div>
     </div>
   </div>

@@ -9,12 +9,22 @@ import { COMPANY, REGIONS_PRIMARY } from '@/lib/constants';
 interface Props {
   title: string;
   description: string;
+  lang?: 'de' | 'hu';
   noindex?: boolean;
 }
 
-const { title, description, noindex = false } = Astro.props;
+const { title, description, lang = 'de', noindex = false } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og-image.png', Astro.site);
+
+const pathname = Astro.url.pathname;
+const dePath = lang === 'hu' ? pathname.replace(/^\/hu/, '') || '/' : pathname;
+const huPath = lang === 'de' ? '/hu' + (pathname === '/' ? '/' : pathname) : pathname;
+const deURL = new URL(dePath, Astro.site);
+const huURL = new URL(huPath, Astro.site);
+
+const htmlLang = lang === 'hu' ? 'hu' : 'de-AT';
+const ogLocale = lang === 'hu' ? 'hu_HU' : 'de_AT';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -38,12 +48,15 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="de-AT">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="de-AT" href={deURL} />
+    <link rel="alternate" hreflang="hu" href={huURL} />
+    <link rel="alternate" hreflang="x-default" href={deURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <title>{title}</title>
@@ -53,7 +66,7 @@ const jsonLd = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="de_AT" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:url" content={canonicalURL} />
 
     <meta name="twitter:card" content="summary_large_image" />

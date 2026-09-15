@@ -1,0 +1,9 @@
+---
+// Consistent, accessible styling for pre-launch TODO markers. Solid
+// sun-600 background with ink text passes contrast (~4.7:1) regardless
+// of the surrounding section's background, so it works everywhere.
+---
+
+<span class="inline-block rounded bg-sun-600 px-1.5 py-0.5 font-body font-medium text-ink">
+  <slot />
+</span>

@@ -1,10 +1,49 @@
 ---
-const steps = [
-  { n: '1', label: 'Innengerät' },
-  { n: '2', label: 'Leitungen' },
-  { n: '3', label: 'Außengerät' },
-  { n: '4', label: 'Inbetriebnahme' },
-];
+interface Props {
+  lang?: 'de' | 'hu';
+}
+const { lang = 'de' } = Astro.props;
+
+const copy = {
+  de: {
+    diagramLabel: 'Schema einer Split-Klimaanlage: Innengerät, Leitungen, Außengerät und elektrischer Anschluss',
+    steps: [
+      { n: '1', label: 'Innengerät' },
+      { n: '2', label: 'Leitungen' },
+      { n: '3', label: 'Außengerät' },
+      { n: '4', label: 'Inbetriebnahme' },
+    ],
+    montageTitle: 'Klimaanlagen-Montage',
+    montageDesc:
+      'Fachgerechte Komplettmontage von Split-Klimaanlagen – Innen- und Außengerät, Kältemittelleitungen, elektrischer Anschluss und Inbetriebnahme, nach Herstellervorgaben.',
+    reparaturTitle: 'Reparatur & Service',
+    reparaturDesc:
+      'Fehlersuche und Reparatur bei Funktionsstörungen, Fehlercodes, Leistungsabfall oder auffälligem Betrieb.',
+    wartungTitle: 'Wartung',
+    wartungDesc:
+      'Reinigung und Prüfung der wichtigen Bauteile, Funktionskontrolle – für hygienischen, effizienten und zuverlässigen Betrieb.',
+  },
+  hu: {
+    diagramLabel: 'Egy split klíma sematikus rajza: beltéri egység, csővezetékek, kültéri egység és elektromos bekötés',
+    steps: [
+      { n: '1', label: 'Beltéri egység' },
+      { n: '2', label: 'Csővezetékek' },
+      { n: '3', label: 'Kültéri egység' },
+      { n: '4', label: 'Üzembe helyezés' },
+    ],
+    montageTitle: 'Klímaberendezés telepítése',
+    montageDesc:
+      'Split klímák szakszerű, teljes körű telepítése – beltéri és kültéri egység, hűtőközeg-vezetékek, elektromos bekötés és üzembe helyezés, a gyártói előírások szerint.',
+    reparaturTitle: 'Javítás és szerviz',
+    reparaturDesc:
+      'Hibakeresés és javítás működési zavar, hibakód, teljesítménycsökkenés vagy rendellenes működés esetén.',
+    wartungTitle: 'Karbantartás',
+    wartungDesc:
+      'A fontos alkatrészek tisztítása és ellenőrzése, működési kontroll – a higiénikus, hatékony és megbízható üzemeltetésért.',
+  },
+} as const;
+const t = copy[lang];
+const steps = t.steps;
 ---
 
 <section id="leistungen" class="bg-paper py-20 md:py-28">
@@ -16,7 +55,7 @@ const steps = [
           viewBox="0 0 420 400"
           class="mx-auto w-full max-w-sm md:mx-0"
           role="img"
-          aria-label="Schema einer Split-Klimaanlage: Innengerät, Leitungen, Außengerät und elektrischer Anschluss"
+          aria-label={t.diagramLabel}
         >
           <line
             x1="258"
@@ -118,12 +157,10 @@ const steps = [
       <div class="col-span-12 flex flex-col gap-24 md:col-span-7 md:gap-40">
         <article data-service-block="montage" class="max-w-measure md:flex md:min-h-[75vh] md:flex-col md:justify-center">
           <h2 class="mb-4 text-3xl text-ink md:text-4xl [font-variation-settings:'wdth'_118]">
-            Klimaanlagen-Montage
+            {t.montageTitle}
           </h2>
           <p class="mb-8 text-lg text-neutral-700">
-            Fachgerechte Komplettmontage von Split-Klimaanlagen – Innen- und
-            Außengerät, Kältemittelleitungen, elektrischer Anschluss und
-            Inbetriebnahme, nach Herstellervorgaben.
+            {t.montageDesc}
           </p>
           <ol class="space-y-3">
             {
@@ -141,21 +178,19 @@ const steps = [
 
         <article data-service-block="reparatur" class="max-w-measure md:flex md:min-h-[75vh] md:flex-col md:justify-center">
           <h2 class="mb-4 text-3xl text-ink md:text-4xl [font-variation-settings:'wdth'_118]">
-            Reparatur &amp; Service
+            {t.reparaturTitle}
           </h2>
           <p class="text-lg text-neutral-700">
-            Fehlersuche und Reparatur bei Funktionsstörungen, Fehlercodes,
-            Leistungsabfall oder auffälligem Betrieb.
+            {t.reparaturDesc}
           </p>
         </article>
 
         <article data-service-block="wartung" class="max-w-measure md:flex md:min-h-[75vh] md:flex-col md:justify-center">
           <h2 class="mb-4 text-3xl text-ink md:text-4xl [font-variation-settings:'wdth'_118]">
-            Wartung
+            {t.wartungTitle}
           </h2>
           <p class="text-lg text-neutral-700">
-            Reinigung und Prüfung der wichtigen Bauteile, Funktionskontrolle –
-            für hygienischen, effizienten und zuverlässigen Betrieb.
+            {t.wartungDesc}
           </p>
         </article>
       </div>

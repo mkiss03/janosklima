@@ -1,0 +1,99 @@
+---
+import { COMPANY } from '@/lib/constants';
+import TodoNote from './TodoNote.astro';
+
+interface Props {
+  lang?: 'de' | 'hu';
+}
+const { lang = 'de' } = Astro.props;
+
+const copy = {
+  de: {
+    title: 'Kontakt',
+    intro: 'Rufen Sie uns an oder schreiben Sie uns eine E-Mail. Am besten gleich mit ein paar Fotos oder einem kurzen Video von der geplanten Stelle – dann können wir Ihnen ein genaues Angebot machen.',
+    phoneAT: 'Telefon (Österreich)',
+    phoneHU: 'Telefon (Ungarn)',
+    email: 'E-Mail',
+    address: 'Adresse',
+    country: 'Ungarn',
+    emailTodo: '[TODO: E-Mail-Adresse]',
+  },
+  hu: {
+    title: 'Kapcsolat',
+    intro: 'Hívjon minket, vagy írjon e-mailt. Ha rögtön küld pár fotót vagy egy rövid videót a tervezett helyszínről, abból pontos árajánlatot tudunk adni.',
+    phoneAT: 'Telefon (Ausztria)',
+    phoneHU: 'Telefon (Magyarország)',
+    email: 'E-mail',
+    address: 'Cím',
+    country: 'Magyarország',
+    emailTodo: '[TODO: e-mail cím]',
+  },
+} as const;
+const t = copy[lang];
+---
+
+<section id="kontakt" class="bg-paper py-20 md:py-28">
+  <div class="mx-auto max-w-content px-5 sm:px-8">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+      <div class="col-span-12 md:col-span-5">
+        <h2 class="mb-4 text-3xl text-ink md:text-4xl [font-variation-settings:'wdth'_118]">
+          {t.title}
+        </h2>
+        <p class="max-w-measure font-body text-lg text-neutral-700">
+          {t.intro}
+        </p>
+      </div>
+
+      <div class="col-span-12 md:col-span-7">
+        <div class="flex flex-col gap-4">
+          <a
+            href={COMPANY.phoneATHref}
+            class="flex items-center justify-between rounded-frame border border-neutral-200 bg-white px-6 py-5 transition-colors duration-220 ease-studio hover:border-ice-600"
+          >
+            <span class="font-body text-sm text-neutral-700">{t.phoneAT}</span>
+            <span class="font-display text-xl text-ink sm:text-2xl [font-variation-settings:'wdth'_112]">
+              {COMPANY.phoneAT}
+            </span>
+          </a>
+
+          <a
+            href={COMPANY.phoneHUHref}
+            class="flex items-center justify-between rounded-frame border border-neutral-200 bg-white px-6 py-5 transition-colors duration-220 ease-studio hover:border-ice-600"
+          >
+            <span class="font-body text-sm text-neutral-700">{t.phoneHU}</span>
+            <span class="font-display text-xl text-ink sm:text-2xl [font-variation-settings:'wdth'_112]">
+              {COMPANY.phoneHU}
+            </span>
+          </a>
+
+          {
+            COMPANY.email ? (
+              <a
+                href={`mailto:${COMPANY.email}`}
+                class="flex items-center justify-between rounded-frame border border-neutral-200 bg-white px-6 py-5 transition-colors duration-220 ease-studio hover:border-ice-600"
+              >
+                <span class="font-body text-sm text-neutral-700">{t.email}</span>
+                <span class="font-display text-xl text-ink sm:text-2xl [font-variation-settings:'wdth'_112]">
+                  {COMPANY.email}
+                </span>
+              </a>
+            ) : (
+              <div class="flex items-center justify-between rounded-frame border border-neutral-200 bg-white px-6 py-5">
+                <span class="font-body text-sm text-neutral-700">{t.email}</span>
+                <TodoNote>{t.emailTodo}</TodoNote>
+              </div>
+            )
+          }
+
+          <div class="rounded-frame border border-neutral-200 bg-white px-6 py-5">
+            <span class="mb-1 block font-body text-sm text-neutral-700">{t.address}</span>
+            <span class="font-body text-base text-ink">
+              {COMPANY.name}, {COMPANY.addressStreet}, {COMPANY.addressZip}{' '}
+              {COMPANY.addressCity}, {t.country}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

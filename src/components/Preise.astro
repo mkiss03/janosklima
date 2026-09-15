@@ -1,36 +1,64 @@
 ---
 import { PRICING } from '@/lib/constants';
+
+interface Props {
+  lang?: 'de' | 'hu';
+}
+const { lang = 'de' } = Astro.props;
+
+const copy = {
+  de: {
+    fromLabel: 'Montage ab',
+    vatNote: PRICING.vatNote,
+    items: [
+      `Bis ${PRICING.maxPipeLength} Leitungslänge`,
+      `Bis ${PRICING.maxRoomHeight} Raumhöhe`,
+      'Innen- und Außengerät',
+      'Inbetriebnahme',
+    ],
+    note: 'Jede Montage ist unterschiedlich. Das genaue Angebot erstellen wir nach einer Besichtigung vor Ort oder anhand von Fotos bzw. einem Video, das Sie uns schicken.',
+    cta: 'Kontakt aufnehmen',
+  },
+  hu: {
+    fromLabel: 'Telepítés ártól',
+    vatNote: '+ áfa',
+    items: [
+      `${PRICING.maxPipeLength} vezetékhosszig`,
+      `${PRICING.maxRoomHeight} belmagasságig`,
+      'Beltéri és kültéri egység',
+      'Üzembe helyezés',
+    ],
+    note: 'Minden telepítés más. A pontos árajánlatot helyszíni szemle vagy az Ön által küldött fotó, illetve videó alapján készítjük el.',
+    cta: 'Kapcsolatfelvétel',
+  },
+} as const;
+const t = copy[lang];
 ---
 
 <section id="preise" class="bg-paper py-20 md:py-28">
   <div class="mx-auto max-w-content px-5 sm:px-8">
     <div class="grid grid-cols-12 gap-x-6 gap-y-10">
       <div class="col-span-12 md:col-span-7">
-        <p class="mb-3 font-body text-lg text-neutral-700">Montage ab</p>
+        <p class="mb-3 font-body text-lg text-neutral-700">{t.fromLabel}</p>
         <p class="mb-8 font-display text-5xl text-ink sm:text-6xl [font-variation-settings:'wdth'_112]">
           {PRICING.startingPrice}
-          <span class="text-2xl text-neutral-500">{PRICING.vatNote}</span>
+          <span class="text-2xl text-neutral-500">{t.vatNote}</span>
         </p>
 
         <ul class="max-w-measure space-y-2 border-t border-neutral-200 pt-6 font-body text-base text-neutral-700">
-          <li>Bis {PRICING.maxPipeLength} Leitungslänge</li>
-          <li>Bis {PRICING.maxRoomHeight} Raumhöhe</li>
-          <li>Innen- und Außengerät</li>
-          <li>Inbetriebnahme</li>
+          {t.items.map((item) => <li>{item}</li>)}
         </ul>
       </div>
 
       <div class="col-span-12 md:col-span-5 md:pt-16">
         <p class="max-w-measure font-body text-base text-neutral-700">
-          Jede Montage ist unterschiedlich. Das genaue Angebot erstellen wir
-          nach einer Besichtigung vor Ort oder anhand von Fotos bzw. einem
-          Video, das Sie uns schicken.
+          {t.note}
         </p>
         <a
-          href="#angebot"
+          href="#kontakt"
           class="mt-6 inline-block rounded-btn bg-ice-900 px-6 py-3 font-body text-base font-medium text-paper transition-colors duration-220 ease-studio hover:bg-ice-600"
         >
-          Angebot mit Foto anfragen
+          {t.cta}
         </a>
       </div>
     </div>

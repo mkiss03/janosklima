@@ -1,11 +1,45 @@
 ---
 import { COMPANY } from '@/lib/constants';
 import LogoMark from './icons/LogoMark.astro';
+
+interface Props {
+  lang?: 'de' | 'hu';
+}
+const { lang = 'de' } = Astro.props;
+
+const copy = {
+  de: {
+    slogan: COMPANY.slogan,
+    sub: 'Klimaanlagen-Montage, Service und Wartung in Wien, Nieder- und Oberösterreich und dem Burgenland.',
+    callCta: 'Jetzt anrufen',
+    contactCta: 'Kontakt aufnehmen',
+    heizen: 'Heizen',
+    kuehlen: 'Kühlen',
+    wohlfuehl: 'Wohlfühltemperatur',
+    sliderLabel: 'Wohlfühltemperatur einstellen',
+    valueSuffix: 'Grad Celsius',
+    registered: 'Registrierter Dienstleister in Österreich · GZ 2026-0.408.541',
+  },
+  hu: {
+    slogan: 'Kényelem egész évben',
+    sub: 'Klímaberendezések telepítése, szervize és karbantartása Bécsben, Alsó- és Felső-Ausztriában, valamint Burgenlandban.',
+    callCta: 'Hívjon most',
+    contactCta: 'Kapcsolatfelvétel',
+    heizen: 'Fűtés',
+    kuehlen: 'Hűtés',
+    wohlfuehl: 'Komfort-hőmérséklet',
+    sliderLabel: 'Komfort-hőmérséklet beállítása',
+    valueSuffix: 'fok Celsius',
+    registered: 'Bejegyzett szolgáltató Ausztriában · GZ 2026-0.408.541',
+  },
+} as const;
+const t = copy[lang];
 ---
 
 <section
   id="hero"
   data-hero
+  data-value-suffix={t.valueSuffix}
   class="relative overflow-hidden bg-ice-900 pb-20 pt-14 md:pb-28 md:pt-20"
   style="--t: 0"
 >
@@ -57,24 +91,23 @@ import LogoMark from './icons/LogoMark.astro';
       </div>
 
       <h1 class="balance text-4xl text-paper sm:text-5xl md:text-6xl [font-variation-settings:'wdth'_120]">
-        {COMPANY.slogan}
+        {t.slogan}
       </h1>
       <p class="max-w-measure text-lg text-paper/85">
-        Klimaanlagen-Montage, Service und Wartung in Wien, Nieder- und
-        Oberösterreich und dem Burgenland.
+        {t.sub}
       </p>
       <div class="flex flex-wrap gap-3">
         <a
           href={COMPANY.phoneATHref}
           class="rounded-btn bg-sun-500 px-6 py-3 font-body text-base font-medium text-ink transition-colors duration-220 ease-studio hover:bg-sun-600 hover:text-paper"
         >
-          Jetzt anrufen
+          {t.callCta}
         </a>
         <a
-          href="#angebot"
+          href="#kontakt"
           class="rounded-btn border border-paper/40 px-6 py-3 font-body text-base font-medium text-paper transition-colors duration-220 ease-studio hover:border-paper hover:bg-paper/10"
         >
-          Angebot mit Foto anfragen
+          {t.contactCta}
         </a>
       </div>
     </div>
@@ -84,11 +117,11 @@ import LogoMark from './icons/LogoMark.astro';
         class="rounded-frame border border-paper/15 bg-ice-900/30 p-6 backdrop-blur-[2px] sm:p-8"
       >
         <div class="mb-5 flex items-center justify-between font-body text-sm text-paper/70">
-          <span data-label-cold class="transition-opacity duration-220 ease-studio">Heizen</span>
+          <span data-label-cold class="transition-opacity duration-220 ease-studio">{t.heizen}</span>
           <span class="font-display text-paper [font-variation-settings:'wdth'_112]">
-            Wohlfühltemperatur
+            {t.wohlfuehl}
           </span>
-          <span data-label-warm class="transition-opacity duration-220 ease-studio">Kühlen</span>
+          <span data-label-warm class="transition-opacity duration-220 ease-studio">{t.kuehlen}</span>
         </div>
 
         <div class="flex items-center gap-4 sm:gap-6">
@@ -117,7 +150,7 @@ import LogoMark from './icons/LogoMark.astro';
             max="35"
             step="1"
             value="-5"
-            aria-label="Wohlfühltemperatur einstellen"
+            aria-label={t.sliderLabel}
           />
 
           <svg
@@ -156,7 +189,7 @@ import LogoMark from './icons/LogoMark.astro';
   </div>
 
   <p class="relative mx-auto mt-14 max-w-content px-5 font-body text-xs text-paper/55 sm:px-8">
-    Registrierter Dienstleister in Österreich · GZ 2026-0.408.541
+    {t.registered}
   </p>
 </section>
 
@@ -219,6 +252,7 @@ import LogoMark from './icons/LogoMark.astro';
   const readout = document.querySelector<HTMLElement>('[data-temp-readout]');
   const labelCold = document.querySelector<HTMLElement>('[data-label-cold]');
   const labelWarm = document.querySelector<HTMLElement>('[data-label-warm]');
+  const valueSuffix = hero?.dataset.valueSuffix ?? 'Grad Celsius';
 
   if (hero && input && readout) {
     // The slider itself stays linear (-5…35 °C) so the numbers are honest,
@@ -236,7 +270,7 @@ import LogoMark from './icons/LogoMark.astro';
       hero.style.setProperty('--t', t.toFixed(4));
       input.value = String(rounded);
       readout.textContent = `${rounded}°C`;
-      input.setAttribute('aria-valuetext', `${rounded} Grad Celsius`);
+      input.setAttribute('aria-valuetext', `${rounded} ${valueSuffix}`);
       if (labelCold) labelCold.style.opacity = String(0.55 + (1 - t) * 0.45);
       if (labelWarm) labelWarm.style.opacity = String(0.55 + t * 0.45);
     };

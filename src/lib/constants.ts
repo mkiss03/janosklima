@@ -36,11 +36,9 @@ export const PRICING = {
   maxRoomHeight: '3 m',
 } as const;
 
-// Configure the real submit endpoint before going live.
-export const FORM_ENDPOINT = 'TODO_FORM_ENDPOINT';
-
 export const NAV_LINKS = [
   { href: '#leistungen', label: 'Leistungen' },
   { href: '#preise', label: 'Preise' },
   { href: '#einsatzgebiet', label: 'Einsatzgebiet' },
+  { href: '#kontakt', label: 'Kontakt' },
 ] as const;
