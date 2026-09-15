@@ -1,6 +1,5 @@
 ---
 import LegalLayout from '@/layouts/LegalLayout.astro';
-import TodoNote from '@/components/TodoNote.astro';
 import { COMPANY } from '@/lib/constants';
 ---
 
@@ -20,12 +19,7 @@ import { COMPANY } from '@/lib/constants';
     <div><dt class="inline text-neutral-700">UID-Nummer: </dt><dd class="inline">{COMPANY.vatId}</dd></div>
     <div><dt class="inline text-neutral-700">Steuernummer (Ungarn): </dt><dd class="inline">{COMPANY.taxNumber}</dd></div>
     <div><dt class="inline text-neutral-700">Telefon: </dt><dd class="inline">{COMPANY.phoneAT} · {COMPANY.phoneHU}</dd></div>
-    <div>
-      <dt class="inline text-neutral-700">E-Mail: </dt>
-      <dd class="inline">
-        {COMPANY.email || <TodoNote>[TODO: E-Mail-Adresse]</TodoNote>}
-      </dd>
-    </div>
+    <div><dt class="inline text-neutral-700">E-Mail: </dt><dd class="inline">{COMPANY.email}</dd></div>
   </dl>
 
   <h2 class="mb-3 mt-10 text-xl text-ink [font-variation-settings:'wdth'_118]">
@@ -41,21 +35,26 @@ import { COMPANY } from '@/lib/constants';
     Streitschlichtung
   </h2>
   <p class="font-body text-base text-neutral-700">
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — Hinweis auf
-      Online-Streitbeilegungsplattform (OS-Plattform) der EU-Kommission und ggf.
-      zuständige Schlichtungsstelle, falls für dieses Unternehmen erforderlich.]
-    </TodoNote>
+    Über diese Website werden keine Verträge abgeschlossen (siehe AGB);
+    eine Verlinkung der EU-Streitbeilegungsplattform ist daher nach
+    unserer Einschätzung nicht erforderlich. Bei Anliegen wenden Sie
+    sich bitte direkt an uns über die oben genannten Kontaktdaten.
   </p>
 
   <h2 class="mb-3 mt-10 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Haftungshinweis
   </h2>
   <p class="font-body text-base text-neutral-700">
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — Haftung für
-      Inhalte, Links und angewandtes Recht (Verweis auf österreichisches bzw.
-      ungarisches Recht).]
-    </TodoNote>
+    Die Inhalte dieser Website wurden mit Sorgfalt erstellt; für deren
+    Richtigkeit, Vollständigkeit und Aktualität wird jedoch keine Gewähr
+    übernommen. Für Inhalte extern verlinkter Websites sind
+    ausschließlich deren Betreiber verantwortlich. Es gilt das am Sitz
+    des Unternehmens anwendbare Recht.
+  </p>
+
+  <p class="mt-12 font-body text-sm italic text-neutral-500">
+    Hinweis: Dieses Impressum wurde mit Sorgfalt, aber ohne anwaltliche
+    Prüfung erstellt und sollte vor der Veröffentlichung von einer
+    Rechtsberatung gegengelesen werden.
   </p>
 </LegalLayout>

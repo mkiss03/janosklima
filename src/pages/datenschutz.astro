@@ -1,6 +1,5 @@
 ---
 import LegalLayout from '@/layouts/LegalLayout.astro';
-import TodoNote from '@/components/TodoNote.astro';
 import { COMPANY } from '@/lib/constants';
 ---
 
@@ -13,18 +12,10 @@ import { COMPANY } from '@/lib/constants';
     Datenschutzerklärung
   </h1>
 
-  <p class="mb-6 font-body text-base">
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — dieser Text ist ein Entwurf und
-      ersetzt keine rechtliche Prüfung nach DSGVO.]
-    </TodoNote>
-  </p>
-
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Verantwortlicher</h2>
   <p class="font-body text-base text-neutral-700">
     {COMPANY.name}, {COMPANY.addressStreet}, {COMPANY.addressZip} {COMPANY.addressCity}, Ungarn.<br />
-    Telefon: {COMPANY.phoneAT} · E-Mail:{' '}
-    {COMPANY.email || <TodoNote>[TODO: E-Mail-Adresse]</TodoNote>}
+    Telefon: {COMPANY.phoneAT} · E-Mail: {COMPANY.email}
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
@@ -48,18 +39,17 @@ import { COMPANY } from '@/lib/constants';
     Aufruf dieser Website verarbeitet Vercel automatisch technische
     Daten (z. B. IP-Adresse, Datum und Uhrzeit des Zugriffs), wie es bei
     jedem Website-Aufruf technisch notwendig ist. Diese Daten werden
-    nicht mit anderen Datenquellen zusammengeführt.{' '}
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — Auftragsverarbeitungsvertrag
-      bzw. Standardvertragsklauseln mit Vercel wegen Datenübermittlung in
-      die USA]
-    </TodoNote>
+    nicht mit anderen Datenquellen zusammengeführt. Vercel bietet im
+    Rahmen seiner Nutzungsbedingungen standardmäßig einen
+    Auftragsverarbeitungsvertrag mit Standardvertragsklauseln für die
+    Datenübermittlung in die USA an.
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Cookies</h2>
   <p class="font-body text-base text-neutral-700">
-    Diese Website verwendet keine Analyse- oder Marketing-Cookies.{' '}
-    <TodoNote>[TODO: bei Änderung — z. B. Analytics — Cookie-Banner ergänzen]</TodoNote>
+    Diese Website verwendet keine Analyse- oder Marketing-Cookies. Sollte
+    sich das ändern (z. B. durch den Einsatz von Analytics), wird an
+    dieser Stelle ein Cookie-Banner ergänzt.
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Ihre Rechte</h2>
@@ -67,7 +57,16 @@ import { COMPANY } from '@/lib/constants';
     Sie haben das Recht auf Auskunft, Berichtigung, Löschung und
     Einschränkung der Verarbeitung Ihrer Daten sowie das Recht auf
     Datenübertragbarkeit und Widerspruch. Zudem können Sie sich bei einer
-    Datenschutz-Aufsichtsbehörde beschweren.{' '}
-    <TodoNote>[TODO: zuständige Aufsichtsbehörde nennen]</TodoNote>
+    Datenschutz-Aufsichtsbehörde beschweren – zuständig ist die Nemzeti
+    Adatvédelmi és Információszabadság Hatóság (NAIH), die ungarische
+    Datenschutzbehörde, da das Unternehmen in Ungarn niedergelassen ist.
+    Sie können sich auch an die Datenschutzbehörde Ihres Wohnsitzlandes
+    wenden.
+  </p>
+
+  <p class="mt-12 font-body text-sm italic text-neutral-500">
+    Hinweis: Diese Datenschutzerklärung wurde mit Sorgfalt, aber ohne
+    anwaltliche Prüfung erstellt und sollte vor der Veröffentlichung von
+    einer Rechtsberatung gegengelesen werden.
   </p>
 </LegalLayout>

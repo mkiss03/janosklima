@@ -1,6 +1,5 @@
 ---
 import LegalLayout from '@/layouts/LegalLayout.astro';
-import TodoNote from '@/components/TodoNote.astro';
 import { COMPANY, PRICING } from '@/lib/constants';
 ---
 
@@ -12,13 +11,6 @@ import { COMPANY, PRICING } from '@/lib/constants';
   <h1 class="mb-8 text-3xl text-ink [font-variation-settings:'wdth'_118]">
     Általános Szerződési Feltételek
   </h1>
-
-  <p class="mb-6 font-body text-base">
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — ez a szöveg tervezet, nem
-      jogilag érvényes ÁSZF-változat.]
-    </TodoNote>
-  </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Hatály</h2>
   <p class="font-body text-base text-neutral-700">
@@ -66,40 +58,50 @@ import { COMPANY, PRICING } from '@/lib/constants';
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Fizetési feltételek</h2>
   <p class="font-body text-base text-neutral-700">
-    A fizetés nem a weboldalon keresztül történik.{' '}
-    <TodoNote>[TODO: Zahlungsbedingungen festlegen — pl. esedékesség, fizetési mód, előleg]</TodoNote>
+    A fizetés nem a weboldalon keresztül történik. Ha az adott esetben
+    nincs másképp megállapodva, a számla a munka elkészülte után
+    esedékes; a fizetés átutalással vagy készpénzben történik.
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Szavatosság
   </h2>
-  <p class="font-body text-base"><TodoNote>[TODO: Gewährleistungsregelung festlegen]</TodoNote></p>
+  <p class="font-body text-base text-neutral-700">
+    A vonatkozó jogszabályok szerinti törvényes szavatosság érvényes.
+  </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Felelősség</h2>
   <p class="font-body text-base text-neutral-700">
     A weboldalon szereplő, nem kötelező érvényű adatok (pl. irányárak,
     általános szolgáltatásleírások) helyességéért nem vállalunk
     felelősséget. Kizárólag az egyedileg elkészített árajánlat kötelező
-    érvényű.{' '}
-    <TodoNote>[TODO: weitergehende Haftungsregelung von Rechtsberatung festlegen lassen]</TodoNote>
+    érvényű. Ezen túlmenően a cég a törvényi rendelkezések szerint felel.
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Elállási jog
   </h2>
-  <p class="font-body text-base">
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — online űrlap hiányában is
-      előfordulhat, hogy a telefonon/e-mailben megkötött szerződés az
-      osztrák FAGG szerint távollévők közötti szerződésnek minősül.
-      Tisztázandó: érvényesül-e valamelyik kivétel (pl. helyszíni szemle
-      a szerződéskötés előtt, sürgős javítás az ügyfél kifejezett
-      kérésére).]
-    </TodoNote>
+  <p class="font-body text-base text-neutral-700">
+    Ha a szerződés kizárólag üzlethelyiségen kívül jön létre – például
+    kizárólag telefonon vagy e-mailben, helyszíni szemle nélkül –, akkor
+    a fogyasztókat az osztrák FAGG (Fern- und Auswärtsgeschäfte-Gesetz)
+    alapján 14 napos elállási jog illetheti meg. Törvényi kivétel
+    érvényesül többek között a sürgős javítási vagy karbantartási
+    munkáknál, amelyeket az ügyfél kifejezett kérésére végzünk. Az
+    elállási jogról esetenként tájékoztatjuk Önt.
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Alkalmazandó jog és illetékesség
   </h2>
-  <p class="font-body text-base"><TodoNote>[TODO: anwendbares Recht und Gerichtsstand festlegen]</TodoNote></p>
+  <p class="font-body text-base text-neutral-700">
+    Az osztrák jog alkalmazandó, az ENSZ Bécsi Vételi Egyezményének
+    kizárásával. Az ügyfél lakóhelye szerinti ország kötelező
+    fogyasztóvédelmi rendelkezései ettől függetlenül érvényben maradnak.
+  </p>
+
+  <p class="mt-12 font-body text-sm italic text-neutral-500">
+    Megjegyzés: ez az ÁSZF gondosan, de ügyvédi ellenőrzés nélkül
+    készült, és közzététel előtt jogi felülvizsgálatot igényel.
+  </p>
 </LegalLayout>

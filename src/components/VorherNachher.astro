@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import TodoNote from './TodoNote.astro';
 import wohnzimmerVorher from '@/assets/images/vorher-nachher/wohnzimmer-vorher.jpg';
 import wohnzimmerNachher from '@/assets/images/vorher-nachher/wohnzimmer-nachher.jpg';
 import fassadeVorher from '@/assets/images/vorher-nachher/fassade-vorher.jpg';
@@ -33,7 +32,7 @@ const copy = {
         nachherAlt: 'Daikin Außengerät auf Wandkonsole montiert',
         vorherCaption: 'Vorbereitete Wanddurchführung, vor der Montage',
         nachherCaption: 'Daikin Außengerät auf Wandkonsole montiert',
-        todo: 'TODO: neu fotografieren, gleiche Position',
+        todo: 'Vorläufiger Vergleich – Fotos aus leicht unterschiedlichem Blickwinkel',
       },
     ],
   },
@@ -58,7 +57,7 @@ const copy = {
         nachherAlt: 'Felszerelt Daikin kültéri egység fali konzolon',
         vorherCaption: 'Előkészített falátvezetés, szerelés előtt',
         nachherCaption: 'Daikin kültéri egység fali konzolon felszerelve',
-        todo: 'TODO: újra fotózni, azonos pozícióból',
+        todo: 'Előzetes összehasonlítás – a fotók kissé eltérő szögből készültek',
       },
     ],
   },
@@ -162,7 +161,9 @@ const projects = t.projects.map((p) => ({ ...p, ...images[p.id as keyof typeof i
               >
                 {project.vorherCaption}
               </p>
-              {project.todo && <TodoNote>[{project.todo}]</TodoNote>}
+              {project.todo && (
+                <p class="font-body text-xs italic text-paper/55">{project.todo}</p>
+              )}
             </div>
           </div>
         ))

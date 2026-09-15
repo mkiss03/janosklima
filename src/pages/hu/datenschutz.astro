@@ -1,6 +1,5 @@
 ---
 import LegalLayout from '@/layouts/LegalLayout.astro';
-import TodoNote from '@/components/TodoNote.astro';
 import { COMPANY } from '@/lib/constants';
 ---
 
@@ -13,18 +12,10 @@ import { COMPANY } from '@/lib/constants';
     Adatvédelmi tájékoztató
   </h1>
 
-  <p class="mb-6 font-body text-base">
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — ez a szöveg tervezet, nem
-      helyettesíti a GDPR szerinti jogi ellenőrzést.]
-    </TodoNote>
-  </p>
-
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Adatkezelő</h2>
   <p class="font-body text-base text-neutral-700">
     {COMPANY.name}, {COMPANY.addressStreet}, {COMPANY.addressZip} {COMPANY.addressCity}, Magyarország.<br />
-    Telefon: {COMPANY.phoneAT} · E-mail:{' '}
-    {COMPANY.email || <TodoNote>[TODO: e-mail cím]</TodoNote>}
+    Telefon: {COMPANY.phoneAT} · E-mail: {COMPANY.email}
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">
@@ -48,18 +39,17 @@ import { COMPANY } from '@/lib/constants';
     megnyitásakor a Vercel automatikusan feldolgoz technikai adatokat
     (pl. IP-cím, a hozzáférés dátuma és időpontja), ahogy ez minden
     weboldal-látogatásnál technikailag szükséges. Ezeket az adatokat nem
-    kapcsoljuk össze más adatforrásokkal.{' '}
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — adatfeldolgozási
-      szerződés, illetve általános adatvédelmi kikötések a Vercellel, a
-      USA-ba történő adattovábbítás miatt]
-    </TodoNote>
+    kapcsoljuk össze más adatforrásokkal. A Vercel a felhasználási
+    feltételei keretében alapértelmezetten kínál adatfeldolgozási
+    szerződést általános adatvédelmi kikötésekkel a USA-ba történő
+    adattovábbításhoz.
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Sütik</h2>
   <p class="font-body text-base text-neutral-700">
-    Ez a weboldal nem használ elemző vagy marketing célú sütiket.{' '}
-    <TodoNote>[TODO: módosítás esetén — pl. analitika bevezetésekor — cookie-tájékoztató kiegészítése]</TodoNote>
+    Ez a weboldal nem használ elemző vagy marketing célú sütiket. Ha ez
+    a jövőben megváltozik (pl. analitika bevezetésével), ezen a helyen
+    cookie-tájékoztatót adunk hozzá.
   </p>
 
   <h2 class="mb-3 mt-8 text-xl text-ink [font-variation-settings:'wdth'_118]">Az Ön jogai</h2>
@@ -67,7 +57,13 @@ import { COMPANY } from '@/lib/constants';
     Önt megilleti a hozzáférés, helyesbítés, törlés és az adatkezelés
     korlátozásának joga, valamint az adathordozhatósághoz és a
     tiltakozáshoz való jog. Emellett panasszal élhet az illetékes
-    adatvédelmi hatóságnál.{' '}
-    <TodoNote>[TODO: illetékes adatvédelmi hatóság megnevezése]</TodoNote>
+    adatvédelmi hatóságnál – mivel a cég Magyarországon van bejegyezve,
+    ez a Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH). Az
+    Ön lakóhelye szerinti ország adatvédelmi hatóságához is fordulhat.
+  </p>
+
+  <p class="mt-12 font-body text-sm italic text-neutral-500">
+    Megjegyzés: ez a tájékoztató gondosan, de ügyvédi ellenőrzés nélkül
+    készült, és közzététel előtt jogi felülvizsgálatot igényel.
   </p>
 </LegalLayout>

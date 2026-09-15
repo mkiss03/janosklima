@@ -15,7 +15,7 @@ export const COMPANY = {
   phoneATHref: 'tel:+436769117738',
   phoneHU: '+36 20 209 7122',
   phoneHUHref: 'tel:+36202097122',
-  email: '', // TODO: E-Mail-Adresse fehlt
+  email: 'frankojanos19790122@gmail.com',
   registerAuthority:
     'Dienstleisterregister, Bundesministerium für Wirtschaft, Energie und Tourismus',
   registerTrade: 'Kälte- und Klimatechnik',

@@ -1,6 +1,5 @@
 ---
 import LegalLayout from '@/layouts/LegalLayout.astro';
-import TodoNote from '@/components/TodoNote.astro';
 import { COMPANY } from '@/lib/constants';
 ---
 
@@ -20,12 +19,7 @@ import { COMPANY } from '@/lib/constants';
     <div><dt class="inline text-neutral-700">Közösségi adószám: </dt><dd class="inline">{COMPANY.vatId}</dd></div>
     <div><dt class="inline text-neutral-700">Adószám: </dt><dd class="inline">{COMPANY.taxNumber}</dd></div>
     <div><dt class="inline text-neutral-700">Telefon: </dt><dd class="inline">{COMPANY.phoneAT} · {COMPANY.phoneHU}</dd></div>
-    <div>
-      <dt class="inline text-neutral-700">E-mail: </dt>
-      <dd class="inline">
-        {COMPANY.email || <TodoNote>[TODO: e-mail cím]</TodoNote>}
-      </dd>
-    </div>
+    <div><dt class="inline text-neutral-700">E-mail: </dt><dd class="inline">{COMPANY.email}</dd></div>
   </dl>
 
   <h2 class="mb-3 mt-10 text-xl text-ink [font-variation-settings:'wdth'_118]">
@@ -41,21 +35,25 @@ import { COMPANY } from '@/lib/constants';
     Vitarendezés
   </h2>
   <p class="font-body text-base text-neutral-700">
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — az EU online vitarendezési
-      platformjára (OS-Plattform) való hivatkozás, illetve az illetékes
-      békéltető testület megnevezése, ha szükséges.]
-    </TodoNote>
+    Ezen a weboldalon keresztül nem jön létre szerződés (lásd az ÁSZF-et),
+    ezért megítélésünk szerint az EU online vitarendezési platformjára
+    mutató hivatkozás nem szükséges. Kérdés esetén kérjük, forduljon
+    hozzánk közvetlenül a fent megadott elérhetőségeken.
   </p>
 
   <h2 class="mb-3 mt-10 text-xl text-ink [font-variation-settings:'wdth'_118]">
     Felelősségi nyilatkozat
   </h2>
   <p class="font-body text-base text-neutral-700">
-    <TodoNote>
-      [TODO: von Rechtsberatung prüfen lassen — felelősség a tartalomért,
-      a hivatkozásokért és az alkalmazandó jogért (osztrák, illetve magyar
-      jog).]
-    </TodoNote>
+    A weboldal tartalmát gondosan állítottuk össze, ennek ellenére nem
+    vállalunk felelősséget a tartalom helyességéért, teljességéért és
+    aktualitásáért. A külső hivatkozásokon elérhető oldalak tartalmáért
+    kizárólag azok üzemeltetői felelnek. A cég székhelye szerint
+    alkalmazandó jog irányadó.
+  </p>
+
+  <p class="mt-12 font-body text-sm italic text-neutral-500">
+    Megjegyzés: ez az impresszum gondosan, de ügyvédi ellenőrzés nélkül
+    készült, és közzététel előtt jogi felülvizsgálatot igényel.
   </p>
 </LegalLayout>
